@@ -2,15 +2,36 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.isw.app.controllers.RegisterController">
+<VBox alignment="CENTER" spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+  fx:controller="com.isw.app.controllers.RegisterController">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
   </padding>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+  <Label text="Registro de Usuario" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+  <HBox spacing="10">
+    <Label text="Usuario:" minWidth="80" />
+    <TextField fx:id="usernameField" promptText="Ingrese su usuario" />
+  </HBox>
+
+  <HBox spacing="10">
+    <Label text="Correo:" minWidth="80" />
+    <TextField fx:id="emailField" promptText="Ingrese su correo" />
+  </HBox>
+
+  <HBox spacing="10">
+    <Label text="Contraseña:" minWidth="80" />
+    <PasswordField fx:id="passwordField" promptText="Ingrese su contraseña" />
+  </HBox>
+
+  <Button text="Registrarse" onAction="#onRegisterButtonClick" maxWidth="200" />
+
+  <Label fx:id="messageLabel" textFill="red" />
 </VBox>
