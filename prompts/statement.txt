@@ -1,0 +1,98 @@
+SIMULADOR DE ECOSISTEMA
+
+OBJETIVO
+Desarrollar un sistema que simule el comportamiento básico de un ecosistema en el que interactúan dos especies: depredadores y presas, distribuidos en una matriz que representa el terreno.
+
+REQUISITOS TÉCNICOS
+- Lenguaje: Java
+- Debe utilizar: funciones, estructuras de datos, objetos, archivos, programación por capas e interfaz gráfica
+- La interfaz gráfica debe ser intuitiva y permitir comprender la lógica desarrollada
+
+REGISTRO DE USUARIOS
+Se debe crear una ventana para registrar usuarios con los siguientes atributos:
+- Cédula (Integer - TextField)
+- Nombre (String - TextField)
+- Fecha de nacimiento (Date - JDateChooser)
+- Género (String - RadioButton)
+- Contraseña (String - PasswordField)
+- Correo (String - TextField)
+
+Restricciones:
+- Personas menores de 18 años no pueden registrarse
+- Datos se almacenan en archivo: usuarios.txt
+- Usar correos válidos para comprobar funcionamiento
+
+INICIO DE SESIÓN
+- Ingreso mediante coincidencia de cédula y contraseña del archivo
+- La contraseña debe estar encriptada en el archivo
+
+ASPECTOS GENERALES DEL ECOSISTEMA
+1. Matriz de 10x10 donde cada celda puede contener: presas, depredadores o estar vacía
+2. La matriz puede generarse desde código o mediante interfaz
+3. Celdas representadas con íconos/imágenes de animales y celdas vacías con ícono alusivo
+4. Cada turno simula el paso del tiempo (presas se mueven, depredadores cazan, ecosistema cambia)
+5. Posiciones iniciales generadas aleatoriamente
+6. Definir cantidad y tipos iniciales de presas y depredadores
+7. Definir número máximo de turnos
+8. Imprimir cambios en la interfaz con temporizador entre turnos
+9. Guardar datos iniciales en archivo: ecosistema.txt
+
+ESCENARIOS EXPERIMENTALES
+Diseñar tres escenarios distintos:
+1. Ecosistema equilibrado (cantidad similar de presas y depredadores)
+2. Ecosistema con depredadores dominantes
+3. Ecosistema con presas dominantes
+
+EXTENSIONES DE LA SIMULACIÓN
+Proponer dos extensiones que provoquen cambios en los tres escenarios:
+1. Introducir una tercera especie
+2. Implementar mutaciones genéticas
+Describir y justificar qué hace cada extensión y qué cambios provoca en cada escenario.
+
+REGLAS DEL ECOSISTEMA
+Cada turno implica:
+
+1. MOVIMIENTO:
+   - Presas: se mueven a celda adyacente vacía (arriba, abajo, izquierda, derecha)
+   - Depredadores: se mueven hacia celda adyacente con presa (si hay), o a vacía si no encuentran comida
+
+2. ALIMENTACIÓN:
+   - Si depredador se mueve a celda con presa, la presa desaparece
+   - Si depredador pasa 3 turnos sin comer, muere por hambre
+
+3. REPRODUCCIÓN:
+   - Presa que sobrevive 2 turnos consecutivos se reproduce en celda vacía
+   - Depredador que come al menos una vez en últimos 3 turnos puede reproducirse en celda vacía
+
+4. FIN DEL TURNO:
+   - Imprimir ecosistema en pantalla (visualización con matriz)
+   - Guardar estado actual en archivo: estado_turnos.txt (según escenario ejecutándose)
+
+REPORTE
+Al finalizar la simulación, usando datos de estado_turnos.txt, generar:
+1. Mostrar en Spinner el número total de turnos ejecutados
+2. Gráfico de pastel con cantidad final de presas y depredadores
+3. TextField con el turno en que se extinguió una especie (si ocurrió)
+4. Gráfico de pastel con porcentaje de ocupación del ecosistema (todos los elementos)
+5. Enviar PDF adjunto al correo del usuario con información de puntos 1-4
+
+ANÁLISIS COMPARATIVO ENTRE ESCENARIOS
+Interpretar variación de resultados entre los tres escenarios mediante análisis con datos generados por algoritmos, evidenciado con programación en el sistema.
+
+1. ECOSISTEMA EQUILIBRADO:
+   - ¿Se mantiene el equilibrio o una especie termina dominando?
+   - ¿Qué patrones se observan en la variación de poblaciones?
+
+2. DEPREDADORES DOMINANTES:
+   - ¿Qué ocurre con la velocidad de extinción de presas?
+   - ¿Se extinguen también los depredadores por falta de alimento?
+
+3. PRESAS DOMINANTES:
+   - ¿Qué pasa con la ocupación total de la matriz?
+   - ¿Aumentan los turnos de equilibrio o colapso?
+
+4. ANÁLISIS TRANSVERSAL:
+   - ¿Cuál escenario presenta mayor estabilidad ecológica?
+   - ¿Qué factores influyeron más: cantidad inicial o reglas de reproducción?
+
+NOTA: El análisis debe realizarse a través de algoritmos programados y situaciones que se presentan en los escenarios, no mediante respuestas escritas.
