@@ -31,7 +31,7 @@
     <PasswordField fx:id="passwordField" promptText="Ingrese su contraseña" />
   </HBox>
 
-  <Button text="Registrarse" onAction="#onRegisterButtonClick" maxWidth="200" />
+  <Button text="Registrarse" onAction="#onRegisterClick" maxWidth="200" />
 
   <Label fx:id="messageLabel" textFill="red" />
 </VBox>

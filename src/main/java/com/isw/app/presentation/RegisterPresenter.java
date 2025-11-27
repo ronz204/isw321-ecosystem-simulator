@@ -25,7 +25,7 @@ public class RegisterPresenter {
   private Label messageLabel;
 
   @FXML
-  public void onRegisterButtonClick() {
+  public void onRegisterClick() {
     String username = usernameField.getText();
     String email = emailField.getText();
     String password = passwordField.getText();
