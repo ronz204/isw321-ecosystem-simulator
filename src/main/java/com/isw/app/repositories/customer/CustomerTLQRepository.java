@@ -33,6 +33,7 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
 
   private Customer buildCustomer(Map<String, String> fields) {
     Customer customer = new Customer(fields.get("cedula"));
+    customer.setId(fields.get("id"));
     customer.setName(fields.get("name"));
     customer.setEmail(fields.get("email"));
     customer.setGender(fields.get("gender"));

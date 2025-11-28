@@ -37,6 +37,6 @@ public class RegisterCustomerSchema {
   }
 
   public RegisterCustomerCommand toCommand() {
-    return new RegisterCustomerCommand(cedula, name, email, gender, password, birthday);
+    return new RegisterCustomerCommand(name, email, gender, cedula, password, birthday);
   }
 }
