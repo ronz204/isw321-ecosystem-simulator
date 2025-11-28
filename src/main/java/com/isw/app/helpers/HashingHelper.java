@@ -10,7 +10,7 @@ public class HashingHelper {
     return encoder.encode(password);
   }
 
-  public static boolean verifyPassword(String password, String hashed) {
+  public static boolean verify(String password, String hashed) {
     return encoder.matches(password, hashed);
   }
 }

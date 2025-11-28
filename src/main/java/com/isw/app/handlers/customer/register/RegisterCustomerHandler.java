@@ -1,5 +1,7 @@
 package com.isw.app.handlers.customer.register;
 
+import com.isw.app.models.Customer;
+import com.isw.app.helpers.HashingHelper;
 import com.isw.app.repositories.customer.CustomerRepository;
 
 public class RegisterCustomerHandler {
@@ -18,7 +20,10 @@ public class RegisterCustomerHandler {
       return new RegisterCustomerResponse("Ya existe un cliente con esa cédula.");
     }
 
-    repository.save(command.toEntity());
+    Customer customer = command.toEntity();
+    customer.setPassword(HashingHelper.hash(customer.getPassword()));
+
+    repository.save(customer);
     return new RegisterCustomerResponse("Cliente registrado exitosamente");
   }
 }
