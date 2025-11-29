@@ -1,0 +1,18 @@
+$$
+id: CUST-8855
+cedula: 209990888
+name: tester1
+email: tester1@tester1.com
+gender: Masculino
+password: $2a$10$ziL7IFjYecqR/se/Edzyy.eMmjP4Iw6XgZAF5Ufq.u9aTxebSCTQy
+birthday: 2025-11-01
+$$
+$$
+id: CUST-6063
+cedula: 209990887
+name: tester2
+email: tester2@tester2.com
+gender: Masculino
+password: $2a$10$CsmPSl.bQSMQ3D3H5BXP6.FOg/x.njEMjP0bQLrD5O0coQNjqbe2a
+birthday: 2025-11-01
+$$
