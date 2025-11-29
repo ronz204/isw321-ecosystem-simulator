@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
@@ -8,25 +9,30 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
 
-<VBox alignment="CENTER" spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+<VBox alignment="CENTER" spacing="0" style="-fx-background-color:linear-gradient(to bottom,#e8ffe8,#b3e6b3);" xmlns:fx="http://javafx.com/fxml"
   fx:controller="com.isw.app.presentation.LoginPresenter">
   <padding>
-    <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+    <Insets bottom="0" left="0" right="0" top="0" />
   </padding>
 
-  <Label text="Iniciar Sesión" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+  <VBox alignment="CENTER" spacing="18" maxWidth="420" style="-fx-background-color: #ffffffcc; -fx-background-radius: 18; -fx-padding: 28 38 28 38; -fx-effect: dropshadow(gaussian, #7ec97e, 18, 0.3, 0, 4);">
+    <Label text="🌳 Iniciar Sesión Ecosistema" style="-fx-font-size: 22px; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #2e7d32;" />
 
-  <HBox spacing="10">
-    <Label text="Cédula:" minWidth="80" />
-    <TextField fx:id="cedulaField" promptText="Ingrese su cédula" />
-  </HBox>
+    <Line endX="320" stroke="#b3e6b3" strokeWidth="2"/>
 
-  <HBox spacing="10">
-    <Label text="Contraseña:" minWidth="80" />
-    <PasswordField fx:id="passwordField" promptText="Ingrese su contraseña" />
-  </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+      <Label text="Cédula:" minWidth="90" style="-fx-font-size: 14px;" />
+      <TextField fx:id="cedulaField" promptText="Ingrese su cédula" style="-fx-background-radius: 8;" />
+    </HBox>
 
-  <Button text="Ingresar" onAction="#onLoginClick" maxWidth="200" />
+    <HBox spacing="10" alignment="CENTER_LEFT">
+      <Label text="Contraseña:" minWidth="90" style="-fx-font-size: 14px;" />
+      <PasswordField fx:id="passwordField" promptText="Ingrese su contraseña" style="-fx-background-radius: 8;" />
+    </HBox>
 
-  <Label fx:id="messageLabel" textFill="red" />
+    <Button text="🌱 Ingresar" onAction="#onLoginClick" maxWidth="220"
+      style="-fx-background-color: #43a047; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 12; -fx-font-family: 'Segoe UI Semibold';" />
+
+    <Label fx:id="messageLabel" textFill="red" style="-fx-font-size: 13px; -fx-padding: 6 0 0 0;" />
+  </VBox>
 </VBox>

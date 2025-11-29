@@ -46,7 +46,12 @@ public class LoginPresenter {
     LoginCustomerResponse response = handler.handle(command);
 
     messageLabel.setText(response.message());
-    messageLabel.setStyle(
-        response.message().startsWith("Inicio de sesión exitoso") ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+    if (response.message().startsWith("Inicio de sesión exitoso")) {
+      messageLabel.setStyle("-fx-text-fill: #388e3c;");
+      cedulaField.clear();
+      passwordField.clear();
+    } else {
+      messageLabel.setStyle("-fx-text-fill: red;");
+    }
   }
 }
