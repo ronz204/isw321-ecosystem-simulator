@@ -105,7 +105,7 @@
             <id>default-cli</id>
             <configuration>
               <mainClass>
-                com.isw.app.HelloApplication</mainClass>
+                com.isw.app.Launcher</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
