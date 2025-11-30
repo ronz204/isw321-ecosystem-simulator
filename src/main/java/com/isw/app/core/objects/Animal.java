@@ -1,21 +1,23 @@
 package com.isw.app.core.objects;
 
+import com.isw.app.enums.AnimalDetail;
+
 public class Animal {
   
-  private String name;
   private Coord coord;
+  private AnimalDetail detail;
 
-  public Animal(String name, Coord coord) {
-    this.name = name;
+  public Animal(AnimalDetail detail, Coord coord) {
+    this.detail = detail;
     this.coord = coord;
-  }
-
-  public String getName() {
-    return name;
   }
 
   public Coord getCoord() {
     return coord;
+  }
+
+  public AnimalDetail getDetail() {
+    return detail;
   }
 
   public void setCoord(Coord coord) {
