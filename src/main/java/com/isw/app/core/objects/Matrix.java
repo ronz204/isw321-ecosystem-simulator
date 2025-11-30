@@ -1,8 +1,10 @@
 package com.isw.app.core.objects;
 
+import com.isw.app.helpers.RandomHelper;
+
 public class Matrix {
-  private final int ROWS = 10;
-  private final int COLS = 10;
+  private static final int ROWS = 10;
+  private static final int COLS = 10;
   private Sector[][] sectors;
 
   public Matrix() {
@@ -27,5 +29,11 @@ public class Matrix {
   public Sector getSectorAt(int row, int col) {
     if (isValidCoord(row, col)) return sectors[row][col];
     throw new IndexOutOfBoundsException("Invalid sector coordinates");
+  }
+
+  public static Coord getRandomCoord() {
+    int row = RandomHelper.getRandomInt(0, ROWS - 1);
+    int col = RandomHelper.getRandomInt(0, COLS - 1);
+    return new Coord(row, col);
   }
 }
