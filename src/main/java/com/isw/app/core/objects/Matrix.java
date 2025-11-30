@@ -1,11 +1,11 @@
-package com.isw.app.models;
+package com.isw.app.core.objects;
 
-public class Dashboard {
+public class Matrix {
   private final int ROWS = 10;
   private final int COLS = 10;
   private Sector[][] sectors;
 
-  public Dashboard() {
+  public Matrix() {
     setupSectors();
   }
 
@@ -18,14 +18,6 @@ public class Dashboard {
         sectors[row][col] = new Sector(coord);
       }
     }
-  }
-
-  public int getRows() {
-    return ROWS;
-  }
-
-  public int getCols() {
-    return COLS;
   }
 
   private boolean isValidCoord(int row, int col) {

@@ -1,4 +1,4 @@
-package com.isw.app.models;
+package com.isw.app.core.objects;
 
 public class Coord {
   private int row, col;

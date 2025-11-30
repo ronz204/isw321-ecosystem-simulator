@@ -1,22 +1,16 @@
 package com.isw.app.models;
 
-import com.isw.app.enums.EcosystemType;
+import com.isw.app.core.objects.Matrix;
 
 public class Ecosystem {
 
-  private EcosystemType type;
-  private Dashboard dashboard;
+  private Matrix matrix;
 
-  public Ecosystem(EcosystemType type) {
-    this.dashboard = new Dashboard();
-    this.type = type;
+  public Ecosystem() {
+    this.matrix = new Matrix();
   }
 
-  public EcosystemType getType() {
-    return type;
-  }
-
-  public Dashboard getDashboard() {
-    return dashboard;
+  public Matrix getMatrix() {
+    return matrix;
   }
 }

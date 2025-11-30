@@ -1,7 +1,7 @@
-package com.isw.app.models;
+package com.isw.app.core.objects;
 
 public class Sector {
-  private final Coord coord;
+  private Coord coord;
   private Animal animal;
 
   public Sector(Coord coord) {
