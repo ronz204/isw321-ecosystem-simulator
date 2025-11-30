@@ -1,31 +1,18 @@
 package com.isw.app.models;
 
 import java.time.LocalDate;
-import com.isw.app.helpers.IdentifierHelper;
 
 public class Customer {
-  private final String PREFIX = "CUST";
-
-  private String id;
-  private final String cedula;
 
   private String name;
+  private String cedula;
   private String email;
-  private String gender;
   private String password;
+  private String gender;
   private LocalDate birthday;
 
   public Customer(String cedula) {
-    this.id = IdentifierHelper.generate(PREFIX);
     this.cedula = cedula;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public String getCedula() {

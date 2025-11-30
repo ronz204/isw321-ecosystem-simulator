@@ -1,0 +1,8 @@
+$$
+name: tester1
+cedula: 209990888
+email: tester1@tester1.com
+password: $2a$10$.QXysHwuq8IozOIBJHW3Tuhnty.gZzQqUPOgtkkIXTrAxLrY98LtG
+gender: Masculino
+birthday: 2000-11-04
+$$

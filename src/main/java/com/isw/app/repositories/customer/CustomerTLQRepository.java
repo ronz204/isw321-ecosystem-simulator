@@ -17,12 +17,11 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
   public void save(Customer customer) {
     try (BufferedWriter writer = BufferedHelper.getWriter(DataPath.CUSTOMERS)) {
       writeDelimiter(writer);
-      writeField(writer, "id", customer.getId());
-      writeField(writer, "cedula", customer.getCedula());
       writeField(writer, "name", customer.getName());
+      writeField(writer, "cedula", customer.getCedula());
       writeField(writer, "email", customer.getEmail());
-      writeField(writer, "gender", customer.getGender());
       writeField(writer, "password", customer.getPassword());
+      writeField(writer, "gender", customer.getGender());
       writeField(writer, "birthday", customer.getBirthday().toString());
       writeDelimiter(writer);
       writer.flush();
@@ -33,7 +32,6 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
 
   private Customer buildCustomer(Map<String, String> fields) {
     Customer customer = new Customer(fields.get("cedula"));
-    customer.setId(fields.get("id"));
     customer.setName(fields.get("name"));
     customer.setEmail(fields.get("email"));
     customer.setGender(fields.get("gender"));
