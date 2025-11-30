@@ -16,6 +16,7 @@ public class SwitcherHelper {
   public static void switchTo(String path) throws IOException {
     Parent root = FXMLLoader.load(SwitcherHelper.class.getResource(path));
     Scene scene = new Scene(root, 1000, 600);
+    
     primary.setTitle("Ecosystem Simulator");
     primary.setScene(scene);
     primary.show();

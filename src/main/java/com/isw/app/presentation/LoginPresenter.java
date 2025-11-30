@@ -6,12 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
 import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.repositories.customer.CustomerRepository;
-import com.isw.app.repositories.customer.CustomerTLQRepository;
-import com.isw.app.handlers.customer.login.LoginCustomerSchema;
-import com.isw.app.handlers.customer.login.LoginCustomerHandler;
-import com.isw.app.handlers.customer.login.LoginCustomerCommand;
-import com.isw.app.handlers.customer.login.LoginCustomerResponse;
+import com.isw.app.repositories.customer.*;
+import com.isw.app.handlers.customer.login.*;
 
 public class LoginPresenter {
 

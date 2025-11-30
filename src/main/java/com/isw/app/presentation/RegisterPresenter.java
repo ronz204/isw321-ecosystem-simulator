@@ -9,15 +9,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
+import com.isw.app.enums.FXMLPath;
+import com.isw.app.helpers.SwitcherHelper;
 import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.repositories.customer.CustomerRepository;
-import com.isw.app.repositories.customer.CustomerTLQRepository;
-import com.isw.app.handlers.customer.register.RegisterCustomerSchema;
-import com.isw.app.handlers.customer.register.RegisterCustomerHandler;
-import com.isw.app.handlers.customer.register.RegisterCustomerCommand;
-import com.isw.app.handlers.customer.register.RegisterCustomerResponse;
+import com.isw.app.repositories.customer.*;
+import com.isw.app.handlers.customer.register.*;
 
 public class RegisterPresenter {
+
   private final CustomerRepository repository = new CustomerTLQRepository();
   private final RegisterCustomerHandler handler = new RegisterCustomerHandler(repository);
 
@@ -78,9 +77,19 @@ public class RegisterPresenter {
     messageLabel.setText(response.message());
     if (response.message().startsWith("Cliente registrado")) {
       messageLabel.setStyle("-fx-text-fill: #388e3c;");
+
       clearFields();
+      switchToLogin();
     } else {
       messageLabel.setStyle("-fx-text-fill: red;");
+    }
+  }
+
+  private void switchToLogin() {
+    try {
+      SwitcherHelper.switchTo(FXMLPath.LOGIN.getPath());
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
