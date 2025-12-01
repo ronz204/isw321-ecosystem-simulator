@@ -1,5 +1,5 @@
 package com.isw.app.presentation;
 
-public class EcosystemPresenter {
+public class SimulationPresenter {
 
 }

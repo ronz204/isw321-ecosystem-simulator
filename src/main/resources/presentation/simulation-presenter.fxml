@@ -6,6 +6,6 @@
 
 
 <VBox alignment="CENTER" spacing="0" xmlns:fx="http://javafx.com/fxml"
-  fx:controller="com.isw.app.presentation.EcosystemPresenter">
+  fx:controller="com.isw.app.presentation.SimulationPresenter">
   
 </VBox>
