@@ -1,5 +1,7 @@
 package com.isw.app.handlers;
 
+import com.isw.app.models.Customer;
+import com.isw.app.contexts.AuthContext;
 import com.isw.app.helpers.LocalDateHelper;
 import com.isw.app.repositories.customer.CustomerRepository;
 
@@ -23,7 +25,9 @@ public class RegisterCustomerHandler {
       return new RegisterCustomerResponse("El cliente debe ser mayor de edad.");
     }
 
-    repository.save(command.toEntity());
+    Customer customer = command.toEntity();
+    repository.save(customer);
+    AuthContext.setUser(customer);
     return new RegisterCustomerResponse("Cliente registrado exitosamente");
   }
 }

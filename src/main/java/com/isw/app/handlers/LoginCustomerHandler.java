@@ -1,6 +1,7 @@
 package com.isw.app.handlers;
 
 import com.isw.app.models.Customer;
+import com.isw.app.contexts.AuthContext;
 import com.isw.app.helpers.HashingHelper;
 import com.isw.app.repositories.customer.CustomerRepository;
 
@@ -23,6 +24,7 @@ public class LoginCustomerHandler {
       return new LoginCustomerResponse("Cédula o contraseña incorrecta.");
     }
 
+    AuthContext.setUser(customer);
     return new LoginCustomerResponse("Inicio de sesión exitoso.");
   }
 }
