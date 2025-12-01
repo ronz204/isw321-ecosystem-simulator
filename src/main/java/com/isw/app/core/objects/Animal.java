@@ -1,6 +1,5 @@
 package com.isw.app.core.objects;
 
-import com.isw.app.enums.AnimalDetail;
 import com.isw.app.helpers.IdentifierHelper;
 
 public class Animal {
@@ -8,9 +7,9 @@ public class Animal {
   
   private String uuid;
   private Coord coord;
-  private AnimalDetail detail;
+  private Detail detail;
 
-  public Animal(AnimalDetail detail, Coord coord) {
+  public Animal(Detail detail, Coord coord) {
     this.uuid = IdentifierHelper.generate(PREFIX);
     this.detail = detail;
     this.coord = coord;
@@ -24,7 +23,7 @@ public class Animal {
     return coord;
   }
 
-  public AnimalDetail getDetail() {
+  public Detail getDetail() {
     return detail;
   }
 

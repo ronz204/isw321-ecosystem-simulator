@@ -1,12 +1,12 @@
-package com.isw.app.enums;
+package com.isw.app.core.objects;
 
-public enum AnimalDetail {
+public enum Detail {
   CARNIVORE("Carnivoro"),
   HERBIVORE("Herbivoro");
 
   private final String name;
 
-  AnimalDetail(String name) {
+  Detail(String name) {
     this.name = name;
   }
 
