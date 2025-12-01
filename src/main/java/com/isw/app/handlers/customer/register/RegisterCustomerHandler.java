@@ -1,7 +1,5 @@
 package com.isw.app.handlers.customer.register;
 
-import com.isw.app.models.Customer;
-import com.isw.app.helpers.HashingHelper;
 import com.isw.app.helpers.LocalDateHelper;
 import com.isw.app.repositories.customer.CustomerRepository;
 
@@ -25,10 +23,7 @@ public class RegisterCustomerHandler {
       return new RegisterCustomerResponse("El cliente debe ser mayor de edad.");
     }
 
-    Customer customer = command.toEntity();
-    customer.setPassword(HashingHelper.hash(customer.getPassword()));
-
-    repository.save(customer);
+    repository.save(command.toEntity());
     return new RegisterCustomerResponse("Cliente registrado exitosamente");
   }
 }

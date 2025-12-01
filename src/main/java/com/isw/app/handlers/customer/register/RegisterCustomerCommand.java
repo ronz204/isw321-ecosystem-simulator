@@ -2,6 +2,7 @@ package com.isw.app.handlers.customer.register;
 
 import java.time.LocalDate;
 import com.isw.app.models.Customer;
+import com.isw.app.helpers.HashingHelper;
 
 public record RegisterCustomerCommand(
     String name,
@@ -16,7 +17,7 @@ public record RegisterCustomerCommand(
     customer.setName(name());
     customer.setEmail(email());
     customer.setGender(gender());
-    customer.setPassword(password());
+    customer.setPassword(HashingHelper.hash(password()));
     customer.setBirthday(birthday());
     return customer;
   }
