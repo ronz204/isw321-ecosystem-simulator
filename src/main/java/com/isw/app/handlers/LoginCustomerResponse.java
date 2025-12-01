@@ -1,4 +1,4 @@
-package com.isw.app.handlers.customer.login;
+package com.isw.app.handlers;
 
 public record LoginCustomerResponse(String message) {
 

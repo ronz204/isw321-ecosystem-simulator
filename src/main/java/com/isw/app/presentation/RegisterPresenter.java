@@ -13,7 +13,10 @@ import com.isw.app.enums.FXMLPath;
 import com.isw.app.helpers.SwitcherHelper;
 import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.repositories.customer.*;
-import com.isw.app.handlers.customer.register.*;
+import com.isw.app.handlers.RegisterCustomerSchema;
+import com.isw.app.handlers.RegisterCustomerCommand;
+import com.isw.app.handlers.RegisterCustomerHandler;
+import com.isw.app.handlers.RegisterCustomerResponse;
 
 public class RegisterPresenter {
 

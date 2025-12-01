@@ -1,4 +1,4 @@
-package com.isw.app.handlers.customer.register;
+package com.isw.app.handlers;
 
 public record RegisterCustomerResponse(String message) {
 
