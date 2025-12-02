@@ -1,107 +1,103 @@
 package com.isw.app.presentation;
 
+import java.net.URL;
 import javafx.fxml.FXML;
-import java.time.LocalDate;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 import com.isw.app.enums.FXMLPath;
 import com.isw.app.helpers.SwitcherHelper;
 import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.repositories.customer.*;
 import com.isw.app.handlers.RegisterCustomerSchema;
-import com.isw.app.handlers.RegisterCustomerCommand;
 import com.isw.app.handlers.RegisterCustomerHandler;
 import com.isw.app.handlers.RegisterCustomerResponse;
+import com.isw.app.repositories.customer.CustomerRepository;
+import com.isw.app.repositories.customer.CustomerTLQRepository;
 
-public class RegisterPresenter {
+public class RegisterPresenter implements Initializable {
+
+  private static final String ERROR_STYLE = "register-form__message--error";
+  private static final String SUCCESS_STYLE = "register-form__message--success";
 
   private final CustomerRepository repository = new CustomerTLQRepository();
   private final RegisterCustomerHandler handler = new RegisterCustomerHandler(repository);
 
   @FXML
-  private TextField nameField;
+  private Label lblMessage;
+
+  private ToggleGroup grpGender;
 
   @FXML
-  private TextField emailField;
+  private DatePicker fldBirthday;
 
   @FXML
-  private TextField cedulaField;
+  private PasswordField fldPassword;
 
   @FXML
-  private DatePicker birthdayField;
+  private RadioButton rdoMale, rdoFemale;
 
   @FXML
-  private PasswordField passwordField;
+  private TextField fldName, fldEmail, fldCedula;
 
-  @FXML
-  private Label messageLabel;
-
-  @FXML
-  private RadioButton maleRadio;
-
-  @FXML
-  private RadioButton femaleRadio;
-
-  @FXML
-  private ToggleGroup genderGroup;
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    grpGender = new ToggleGroup();
+    rdoMale.setToggleGroup(grpGender);
+    rdoFemale.setToggleGroup(grpGender);
+  }
 
   @FXML
   public void onRegisterClick() {
-    String name = nameField.getText();
-    String email = emailField.getText();
-    String cedula = cedulaField.getText();
-    String gender = null;
-    if (maleRadio.isSelected())
-      gender = "Masculino";
-    else if (femaleRadio.isSelected())
-      gender = "Femenino";
-    String password = passwordField.getText();
-    LocalDate birthday = birthdayField.getValue();
-
-    RegisterCustomerSchema schema = new RegisterCustomerSchema(
-        cedula, name, email, gender, password, birthday);
+    RegisterCustomerSchema schema = getFormFields();
 
     var violations = ValidatorHelper.validate(schema);
-
     if (!violations.isEmpty()) {
-      messageLabel.setText(ValidatorHelper.getMessages(violations));
-      messageLabel.setStyle("-fx-text-fill: red;");
+      showMessage(ValidatorHelper.getMessages(violations), true);
       return;
     }
 
-    RegisterCustomerCommand command = schema.toCommand();
-    RegisterCustomerResponse response = handler.handle(command);
+    RegisterCustomerResponse response = handler.handle(schema.toCommand());
 
-    messageLabel.setText(response.message());
-    if (response.message().startsWith("Cliente registrado")) {
-      messageLabel.setStyle("-fx-text-fill: #388e3c;");
-
-      clearFields();
-      switchToLogin();
-    } else {
-      messageLabel.setStyle("-fx-text-fill: red;");
-    }
-  }
-
-  private void switchToLogin() {
-    try {
+    if (response.isSuccess()) {
+      showMessage(response.message(), false);
+      clearFormFields();
       SwitcherHelper.switchTo(FXMLPath.LOGIN.getPath());
-    } catch (Exception e) {
-      e.printStackTrace();
+    } else {
+      showMessage(response.message(), true);
     }
   }
 
-  private void clearFields() {
-    nameField.clear();
-    emailField.clear();
-    cedulaField.clear();
-    birthdayField.setValue(null);
-    passwordField.clear();
-    genderGroup.selectToggle(null);
+  private void showMessage(String message, boolean isError) {
+    lblMessage.setText(message);
+    lblMessage.getStyleClass().removeAll(ERROR_STYLE, SUCCESS_STYLE);
+    lblMessage.getStyleClass().add(isError ? ERROR_STYLE : SUCCESS_STYLE);
+  }
+
+  private RegisterCustomerSchema getFormFields() {
+    return new RegisterCustomerSchema(
+        fldCedula.getText(),
+        fldName.getText(),
+        fldEmail.getText(),
+        getSelectedGender(),
+        fldPassword.getText(),
+        fldBirthday.getValue());
+  }
+
+  private String getSelectedGender() {
+    if (rdoMale.isSelected())
+      return "Masculino";
+    if (rdoFemale.isSelected())
+      return "Femenino";
+    return null;
+  }
+
+  private void clearFormFields() {
+    fldName.clear();
+    fldEmail.clear();
+    fldCedula.clear();
+    fldBirthday.setValue(null);
+    fldPassword.clear();
+    grpGender.selectToggle(null);
   }
 }

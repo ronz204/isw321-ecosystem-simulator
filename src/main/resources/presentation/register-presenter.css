@@ -1,0 +1,72 @@
+/* Block: register */
+.register {
+  -fx-background-color: linear-gradient(to bottom, #e8ffe8, #b3e6b3);
+}
+
+/* Block: register-form */
+.register-form {
+  -fx-background-color: #ffffffcc;
+  -fx-background-radius: 18;
+  -fx-padding: 28 38 28 38;
+  -fx-effect: dropshadow(gaussian, #7ec97e, 18, 0.3, 0, 4);
+}
+
+/* Block: register-form, Element: title */
+.register-form__title {
+  -fx-font-size: 22px;
+  -fx-font-family: 'Segoe UI Semibold';
+  -fx-text-fill: #2e7d32;
+}
+
+/* Block: register-form, Element: divider */
+.register-form__divider {
+  -fx-stroke: #b3e6b3;
+  -fx-stroke-width: 2;
+}
+
+/* Block: register-form, Element: label */
+.register-form__label {
+  -fx-font-size: 14px;
+  -fx-min-width: 90;
+}
+
+/* Block: register-form, Element: field */
+.register-form__field {
+  -fx-background-radius: 8;
+}
+
+/* Block: register-form, Element: radio */
+.register-form__radio {
+  -fx-font-size: 13px;
+}
+
+/* Block: register-form, Element: button */
+.register-form__button {
+  -fx-background-color: #43a047;
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-background-radius: 12;
+  -fx-font-family: 'Segoe UI Semibold';
+  -fx-max-width: 220;
+}
+
+.register-form__button:hover {
+  -fx-background-color: #388e3c;
+  -fx-cursor: hand;
+}
+
+/* Block: register-form, Element: message */
+.register-form__message {
+  -fx-font-size: 13px;
+  -fx-padding: 6 0 0 0;
+}
+
+/* Block: register-form, Element: message, Modifier: error */
+.register-form__message--error {
+  -fx-text-fill: red;
+}
+
+/* Block: register-form, Element: message, Modifier: success */
+.register-form__message--success {
+  -fx-text-fill: #388e3c;
+}
