@@ -1,5 +1,6 @@
 package com.isw.app.core.objects;
 
+import com.isw.app.core.behavior.Behavior;
 import com.isw.app.helpers.IdentifierHelper;
 
 public class Animal {
@@ -8,9 +9,11 @@ public class Animal {
   private String uuid;
   private Coord coord;
   private Detail detail;
+  private Behavior behavior;
 
-  public Animal(Detail detail, Coord coord) {
+  public Animal(Detail detail, Coord coord, Behavior behavior) {
     this.uuid = IdentifierHelper.generate(PREFIX);
+    this.behavior = behavior;
     this.detail = detail;
     this.coord = coord;
   }
