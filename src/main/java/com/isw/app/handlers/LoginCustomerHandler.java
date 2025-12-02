@@ -16,15 +16,15 @@ public class LoginCustomerHandler {
     var customerOpt = repository.findByCedula(command.cedula());
 
     if (customerOpt.isEmpty()) {
-      return new LoginCustomerResponse("Cédula o contraseña incorrecta.");
+      return new LoginCustomerResponse("Cédula o contraseña incorrecta.", false);
     }
 
     Customer customer = customerOpt.get();
     if (!HashingHelper.verify(command.password(), customer.getPassword())) {
-      return new LoginCustomerResponse("Cédula o contraseña incorrecta.");
+      return new LoginCustomerResponse("Cédula o contraseña incorrecta.", false);
     }
 
     AuthContext.setUser(customer);
-    return new LoginCustomerResponse("Inicio de sesion exitoso.");
+    return new LoginCustomerResponse("Inicio de sesion exitoso.", true);
   }
 }
