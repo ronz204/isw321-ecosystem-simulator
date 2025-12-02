@@ -6,3 +6,11 @@ password: $2a$10$.QXysHwuq8IozOIBJHW3Tuhnty.gZzQqUPOgtkkIXTrAxLrY98LtG
 gender: Masculino
 birthday: 2000-11-04
 $$
+$$
+name: tester2
+cedula: 208880999
+email: tester2@tester2.com
+password: $2a$10$fhRaoxT0sjUhxCmYa6.S3uNL.NMi4jIg56S.11tMQaqx4YBltsuDe
+gender: Masculino
+birthday: 2000-12-02
+$$

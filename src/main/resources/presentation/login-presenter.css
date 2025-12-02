@@ -1,0 +1,67 @@
+/* Block: login */
+.login {
+  -fx-background-color: linear-gradient(to bottom, #e8ffe8, #b3e6b3);
+}
+
+/* Block: login-form */
+.login-form {
+  -fx-background-color: #ffffffcc;
+  -fx-background-radius: 18;
+  -fx-padding: 28 38 28 38;
+  -fx-effect: dropshadow(gaussian, #7ec97e, 18, 0.3, 0, 4);
+}
+
+/* Block: login-form, Element: title */
+.login-form__title {
+  -fx-font-size: 22px;
+  -fx-font-family: 'Segoe UI Semibold';
+  -fx-text-fill: #2e7d32;
+}
+
+/* Block: login-form, Element: divider */
+.login-form__divider {
+  -fx-stroke: #b3e6b3;
+  -fx-stroke-width: 2;
+}
+
+/* Block: login-form, Element: label */
+.login-form__label {
+  -fx-font-size: 14px;
+  -fx-min-width: 90;
+}
+
+/* Block: login-form, Element: field */
+.login-form__field {
+  -fx-background-radius: 8;
+}
+
+/* Block: login-form, Element: button */
+.login-form__button {
+  -fx-background-color: #43a047;
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-background-radius: 12;
+  -fx-font-family: 'Segoe UI Semibold';
+  -fx-max-width: 220;
+}
+
+.login-form__button:hover {
+  -fx-background-color: #388e3c;
+  -fx-cursor: hand;
+}
+
+/* Block: login-form, Element: message */
+.login-form__message {
+  -fx-font-size: 13px;
+  -fx-padding: 6 0 0 0;
+}
+
+/* Block: login-form, Element: message, Modifier: error */
+.login-form__message--error {
+  -fx-text-fill: red;
+}
+
+/* Block: login-form, Element: message, Modifier: success */
+.login-form__message--success {
+  -fx-text-fill: #388e3c;
+}

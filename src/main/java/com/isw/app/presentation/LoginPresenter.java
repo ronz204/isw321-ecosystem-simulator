@@ -5,52 +5,64 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
-import com.isw.app.repositories.customer.*;
 import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.handlers.LoginCustomerSchema;
-import com.isw.app.handlers.LoginCustomerCommand;
 import com.isw.app.handlers.LoginCustomerHandler;
 import com.isw.app.handlers.LoginCustomerResponse;
+import com.isw.app.repositories.customer.CustomerRepository;
+import com.isw.app.repositories.customer.CustomerTLQRepository;
 
 public class LoginPresenter {
+
+  private static final String ERROR_STYLE = "login-form__message--error";
+  private static final String SUCCESS_STYLE = "login-form__message--success";
 
   private final CustomerRepository repository = new CustomerTLQRepository();
   private final LoginCustomerHandler handler = new LoginCustomerHandler(repository);
 
   @FXML
-  private TextField cedulaField;
+  private Label lblMessage;
 
   @FXML
-  private PasswordField passwordField;
+  private TextField fldCedula;
 
   @FXML
-  private Label messageLabel;
+  private PasswordField fldPassword;
 
   @FXML
   public void onLoginClick() {
-    String cedula = cedulaField.getText();
-    String password = passwordField.getText();
-
-    LoginCustomerSchema schema = new LoginCustomerSchema(cedula, password);
+    LoginCustomerSchema schema = getFormFields();
 
     var violations = ValidatorHelper.validate(schema);
-
     if (!violations.isEmpty()) {
-      messageLabel.setText(ValidatorHelper.getMessages(violations));
-      messageLabel.setStyle("-fx-text-fill: red;");
+      showMessage(ValidatorHelper.getMessages(violations), true);
       return;
     }
 
-    LoginCustomerCommand command = new LoginCustomerCommand(cedula, password);
-    LoginCustomerResponse response = handler.handle(command);
+    LoginCustomerResponse response = handler.handle(schema.toCommand());
 
-    messageLabel.setText(response.message());
-    if (response.message().startsWith("Inicio de sesión exitoso")) {
-      messageLabel.setStyle("-fx-text-fill: #388e3c;");
-      cedulaField.clear();
-      passwordField.clear();
+    if (response.isSuccess()) {
+      showMessage(response.message(), false);
+      clearFormFields();
     } else {
-      messageLabel.setStyle("-fx-text-fill: red;");
+      showMessage(response.message(), true);
     }
+  }
+
+  private void showMessage(String message, boolean isError) {
+    lblMessage.setText(message);
+    lblMessage.getStyleClass().removeAll(ERROR_STYLE, SUCCESS_STYLE);
+    lblMessage.getStyleClass().add(isError ? ERROR_STYLE : SUCCESS_STYLE);
+  }
+
+  private LoginCustomerSchema getFormFields() {
+    return new LoginCustomerSchema(
+        fldCedula.getText(),
+        fldPassword.getText());
+  }
+
+  private void clearFormFields() {
+    fldCedula.clear();
+    fldPassword.clear();
   }
 }
