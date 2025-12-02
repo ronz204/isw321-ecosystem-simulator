@@ -1,5 +1,5 @@
 package com.isw.app.handlers;
 
-public record RegisterCustomerResponse(String message) {
+public record RegisterCustomerResponse(String message, boolean isSuccess) {
 
 }
