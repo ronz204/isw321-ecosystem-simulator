@@ -65,13 +65,9 @@
 
       <Line endX="320" styleClass="simulation-form__divider" />
 
-      <!-- Botones -->
-      <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="btnStart" text="▶ Iniciar" onAction="#onStartClick"
-          styleClass="simulation-form__button" />
-        <Button fx:id="btnPause" text="⏸ Pausar" disable="true"
-          styleClass="simulation-form__button" />
-      </HBox>
+      <!-- Botón -->
+      <Button fx:id="btnStart" text="▶ Iniciar" onAction="#onStartClick" maxWidth="Infinity"
+        styleClass="simulation-form__button" />
 
       <Label fx:id="lblMessage" wrapText="true" styleClass="simulation-form__message" />
     </VBox>
