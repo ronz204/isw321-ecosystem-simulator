@@ -2,27 +2,35 @@ package com.isw.app.handlers.login;
 
 import com.isw.app.models.Customer;
 import com.isw.app.helpers.HashingHelper;
+import com.isw.app.properties.LoginProperties;
 import com.isw.app.repositories.customer.CustomerRepository;
 
 public class LoginCustomerHandler {
+
+  private final LoginProperties properties;
   private final CustomerRepository repository;
 
-  public LoginCustomerHandler(CustomerRepository repository) {
+  public LoginCustomerHandler(CustomerRepository repository, LoginProperties properties) {
     this.repository = repository;
+    this.properties = properties;
   }
 
-  public LoginCustomerResponse handle(LoginCustomerCommand command) {
-    var customerOpt = repository.findByCedula(command.cedula());
+  public void handle(LoginCustomerSchema schema) {
+    var customerOpt = repository.findByCedula(schema.getCedula());
 
     if (customerOpt.isEmpty()) {
-      return new LoginCustomerResponse("Cédula o contraseña incorrecta.", false);
+      properties.setMessage("Cédula o contraseña incorrecta.");
+      return;
     }
 
     Customer customer = customerOpt.get();
-    if (!HashingHelper.verify(command.password(), customer.getPassword())) {
-      return new LoginCustomerResponse("Cédula o contraseña incorrecta.", false);
+    if (!HashingHelper.verify(schema.getPassword(), customer.getPassword())) {
+      properties.setMessage("Cédula o contraseña incorrecta.");
+      return;
     }
 
-    return new LoginCustomerResponse("Inicio de sesion exitoso.", true);
+    properties.setMessage("Inicio de sesion exitoso.");
+    properties.setCedula("");
+    properties.setPassword("");
   }
 }

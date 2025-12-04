@@ -14,7 +14,11 @@ public class LoginCustomerSchema {
     this.password = password;
   }
 
-  public LoginCustomerCommand toCommand() {
-    return new LoginCustomerCommand(cedula, password);
+  public String getCedula() {
+    return cedula;
+  }
+
+  public String getPassword() {
+    return password;
   }
 }
