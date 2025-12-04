@@ -1,16 +1,22 @@
 package com.isw.app.core.objects;
 
 public enum Detail {
-  CARNIVORE("Carnivoro"),
-  HERBIVORE("Herbivoro");
+  CARNIVORE("Carnivoro", "🦊"),
+  HERBIVORE("Herbivoro", "🐰");
 
-  private final String name;
+  private final String type;
+  private final String icon;
 
-  Detail(String name) {
-    this.name = name;
+  Detail(String type, String icon) {
+    this.type = type;
+    this.icon = icon;
   }
 
-  public String getName() {
-    return name;
+  public String getType() {
+    return type;
+  }
+
+  public String getIcon() {
+    return icon;
   }
 }
