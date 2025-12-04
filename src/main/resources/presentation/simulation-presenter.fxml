@@ -1,11 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 
 
-<VBox alignment="CENTER" spacing="0" xmlns:fx="http://javafx.com/fxml"
+<ScrollPane fitToWidth="true" fitToHeight="true" styleClass="simulation"
+  stylesheets="@simulation-presenter.css"
+  xmlns:fx="http://javafx.com/fxml"
   fx:controller="com.isw.app.presentation.SimulationPresenter">
-  
-</VBox>
+
+  <HBox alignment="CENTER" spacing="20" styleClass="simulation-container">
+    <padding>
+      <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- Panel de configuración -->
+    <VBox spacing="12" maxWidth="380" styleClass="simulation-form">
+      <Label text="🌎 Configuración de Simulación" styleClass="simulation-form__title" />
+      <Line endX="320" styleClass="simulation-form__divider" />
+
+      <!-- Configuración Inicial -->
+      <Label text="Configuración Inicial" styleClass="simulation-form__subtitle" />
+      
+      <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="Turnos máximos:" styleClass="simulation-form__label" />
+        <TextField fx:id="fldMaxTurns" promptText="Ej: 50" 
+          styleClass="simulation-form__field" />
+      </HBox>
+
+      <Line endX="320" styleClass="simulation-form__divider" />
+
+      <!-- Escenarios -->
+      <Label text="Escenario" styleClass="simulation-form__subtitle" />
+      
+      <VBox spacing="6">
+        <RadioButton fx:id="rdoBalanced" text="Ecosistema Equilibrado" 
+          styleClass="simulation-form__radio" />
+        <RadioButton fx:id="rdoPredatorDominant" text="Depredadores Dominantes" 
+          styleClass="simulation-form__radio" />
+        <RadioButton fx:id="rdoPreyDominant" text="Presas Dominantes" 
+          styleClass="simulation-form__radio" />
+      </VBox>
+
+      <Line endX="320" styleClass="simulation-form__divider" />
+
+      <!-- Extensiones -->
+      <Label text="Extensiones (Opcional)" styleClass="simulation-form__subtitle" />
+      
+      <VBox spacing="6">
+        <CheckBox fx:id="chkThirdSpecies" text="Introducir tercera especie" 
+          styleClass="simulation-form__checkbox" />
+        <CheckBox fx:id="chkGeneticMutation" text="Mutaciones genéticas" 
+          styleClass="simulation-form__checkbox" />
+      </VBox>
+
+      <Line endX="320" styleClass="simulation-form__divider" />
+
+      <!-- Botones -->
+      <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="btnStart" text="▶ Iniciar" onAction="#onStartClick"
+          styleClass="simulation-form__button" />
+        <Button fx:id="btnPause" text="⏸ Pausar" disable="true"
+          styleClass="simulation-form__button" />
+      </HBox>
+
+      <Label fx:id="lblMessage" wrapText="true" styleClass="simulation-form__message" />
+    </VBox>
+
+    <!-- Matriz del ecosistema -->
+    <VBox spacing="12" styleClass="matrix-container">
+      <Label text="🌳 Ecosistema (10x10)" styleClass="matrix-container__title" />
+      <GridPane fx:id="gridMatrix" styleClass="matrix-grid" />
+      
+      <HBox spacing="15" alignment="CENTER">
+        <Label fx:id="lblTurnInfo" text="Turno: 0 / 0" styleClass="simulation-form__label" />
+        <Label fx:id="lblPreyInfo" text="🐰 Presas: 0" styleClass="simulation-form__label" />
+        <Label fx:id="lblPredatorInfo" text="🦊 Depredadores: 0" styleClass="simulation-form__label" />
+      </HBox>
+    </VBox>
+  </HBox>
+</ScrollPane>

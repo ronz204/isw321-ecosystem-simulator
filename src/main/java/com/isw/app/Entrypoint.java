@@ -11,6 +11,6 @@ public class Entrypoint extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     SwitcherHelper.setStage(stage);
-    SwitcherHelper.switchTo(FXMLPath.REGISTER.getPath());
+    SwitcherHelper.switchTo(FXMLPath.SIMULATION.getPath());
   }
 }

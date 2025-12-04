@@ -2,7 +2,8 @@ package com.isw.app.enums;
 
 public enum FXMLPath {
   LOGIN("/presentation/login-presenter.fxml"),
-  REGISTER("/presentation/register-presenter.fxml"),;
+  REGISTER("/presentation/register-presenter.fxml"),
+  SIMULATION("/presentation/simulation-presenter.fxml");
 
   private final String path;
 
