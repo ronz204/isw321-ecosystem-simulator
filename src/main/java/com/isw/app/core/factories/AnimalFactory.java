@@ -10,14 +10,14 @@ import com.isw.app.core.behavior.HerbivoreBehavior;
 
 public class AnimalFactory {
 
-  public static Animal buildCarnivore() {
-    Coord coord = Matrix.getRandomCoord();
+  public static Animal buildCarnivore(Matrix matrix) {
+    Coord coord = matrix.getRandomCoord();
     Behavior behavior = new CarnivoreBehavior();
     return new Animal(Detail.CARNIVORE, coord, behavior);
   }
 
-  public static Animal buildHerbivore() {
-    Coord coord = Matrix.getRandomCoord();
+  public static Animal buildHerbivore(Matrix matrix) {
+    Coord coord = matrix.getRandomCoord();
     Behavior behavior = new HerbivoreBehavior();
     return new Animal(Detail.HERBIVORE, coord, behavior);
   }
