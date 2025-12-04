@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.login;
 
 import com.isw.app.models.Customer;
 import com.isw.app.helpers.HashingHelper;

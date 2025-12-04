@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.login;
 
 import jakarta.validation.constraints.NotBlank;
 

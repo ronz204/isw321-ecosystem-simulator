@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
+import com.isw.app.handlers.login.LoginCustomerHandler;
+import com.isw.app.handlers.login.LoginCustomerResponse;
+import com.isw.app.handlers.login.LoginCustomerSchema;
 import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.handlers.LoginCustomerSchema;
-import com.isw.app.handlers.LoginCustomerHandler;
-import com.isw.app.handlers.LoginCustomerResponse;
 import com.isw.app.repositories.customer.CustomerRepository;
 import com.isw.app.repositories.customer.CustomerTLQRepository;
 
