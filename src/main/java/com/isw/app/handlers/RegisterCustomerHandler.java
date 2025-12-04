@@ -1,6 +1,5 @@
 package com.isw.app.handlers;
 
-import com.isw.app.contexts.AuthContext;
 import com.isw.app.helpers.LocalDateHelper;
 import com.isw.app.repositories.customer.CustomerRepository;
 
@@ -25,7 +24,6 @@ public class RegisterCustomerHandler {
     }
 
     repository.save(command.toEntity());
-    AuthContext.setUser(command.toEntity());
     return new RegisterCustomerResponse("Cliente registrado exitosamente", true);
   }
 }
