@@ -24,16 +24,7 @@ public class Coord {
     this.col = col;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
-    Coord coord = (Coord) obj;
-    return row == coord.row && col == coord.col;
-  }
-
-  @Override
-  public int hashCode() {
-    return 31 * row + col;
+  public boolean isEqual(Coord other) {
+    return this.row == other.row && this.col == other.col;
   }
 }
