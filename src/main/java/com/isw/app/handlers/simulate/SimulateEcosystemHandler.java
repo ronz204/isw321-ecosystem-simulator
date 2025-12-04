@@ -6,14 +6,16 @@ import com.isw.app.properties.SimulationProperties;
 public class SimulateEcosystemHandler {
   private final SimulationProperties properties;
 
-  public SimulateEcosystemHandler(SimulationProperties properties) {
-    this.properties = properties;
+  public SimulateEcosystemHandler() {
+    this.properties = new SimulationProperties();
+  }
+
+  public SimulationProperties getProperties() {
+    return properties;
   }
 
   public SimulateEcosystemResponse handle(SimulateEcosystemCommand command) {
-    if (!Balance.isValid(command.balanceType())) {
-      throw new IllegalArgumentException("Tipo de balance inválido: " + command.balanceType());
-    }
+    Balance.fromValue(command.balanceType());
 
     if (command.maxTurns() < 1) {
       throw new IllegalArgumentException("El número de turnos debe ser mayor a 0.");

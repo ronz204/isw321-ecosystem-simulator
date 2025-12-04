@@ -18,8 +18,8 @@ public class SimulationPresenter {
   private static final String SUCCESS_STYLE = "simulation-form__message--success";
   private static final int MATRIX_SIZE = 10;
 
-  private final SimulationProperties properties = new SimulationProperties();
-  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler(properties);
+  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler();
+  private final SimulationProperties properties = handler.getProperties();
 
   private ToggleGroup grpScenario;
 
@@ -71,15 +71,15 @@ public class SimulationPresenter {
   }
 
   private void bindListeners() {
-    properties.message.addListener((obs, oldVal, newVal) -> {
-      lblMessage.setText(newVal);
+    properties.message.addListener((obs, prev, next) -> {
+      lblMessage.setText(next);
     });
 
-    properties.ecosystem.addListener((obs, oldVal, newVal) -> {
-      if (newVal != null) updateMatrixUI();
+    properties.ecosystem.addListener((obs, prev, next) -> {
+      if (next != null) updateMatrixUI();
     });
 
-    properties.currentTurn.addListener((obs, oldVal, newVal) -> {
+    properties.currentTurn.addListener((obs, prev, next) -> {
       updateMatrixUI();
     });
   }
@@ -148,10 +148,10 @@ public class SimulationPresenter {
   private String getSelectedBalance() {
     if (rdoBalanced.isSelected())
       return Balance.BALANCED.getValue();
-    if (rdoPredatorDominant.isSelected())
-      return Balance.PREDATOR_DOMINANT.getValue();
     if (rdoPreyDominant.isSelected())
       return Balance.PREY_DOMINANT.getValue();
+    if (rdoPredatorDominant.isSelected())
+      return Balance.PREDATOR_DOMINANT.getValue();
     return null;
   }
 

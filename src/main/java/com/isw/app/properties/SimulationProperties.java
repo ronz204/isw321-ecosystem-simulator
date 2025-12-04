@@ -5,8 +5,6 @@ import javafx.beans.property.*;
 import com.isw.app.models.Ecosystem;
 
 public class SimulationProperties {
-  public final ObjectProperty<Ecosystem> ecosystem = new SimpleObjectProperty<>();
-
   public final StringProperty message = new SimpleStringProperty("");
 
   public final IntegerProperty maxTurns = new SimpleIntegerProperty(0);
@@ -16,4 +14,6 @@ public class SimulationProperties {
 
   public final BooleanProperty isRunning = new SimpleBooleanProperty(false);
   public final BooleanProperty isFinished = new SimpleBooleanProperty(false);
+
+  public final ObjectProperty<Ecosystem> ecosystem = new SimpleObjectProperty<>();
 }
