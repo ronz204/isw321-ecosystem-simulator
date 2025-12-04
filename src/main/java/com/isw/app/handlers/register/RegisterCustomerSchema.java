@@ -36,7 +36,27 @@ public class RegisterCustomerSchema {
     this.birthday = birthday;
   }
 
-  public RegisterCustomerCommand toCommand() {
-    return new RegisterCustomerCommand(name, email, gender, cedula, password, birthday);
+  public String getCedula() {
+    return cedula;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getGender() {
+    return gender;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public LocalDate getBirthday() {
+    return birthday;
   }
 }
