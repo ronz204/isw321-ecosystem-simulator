@@ -4,7 +4,8 @@ import java.nio.file.Paths;
 
 public enum DataPath {
   CUSTOMERS("customers.txt"),
-  ECOSYSTEMS("ecosystems.txt");
+  ECOSYSTEMS("ecosystems.txt"),
+  OCCURRENCES("occurrences.txt");
 
   private final String filename;
 
