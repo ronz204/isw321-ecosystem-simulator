@@ -24,4 +24,8 @@ public class Sector {
   public void setAnimal(Animal animal) {
     this.animal = animal;
   }
+
+  public boolean hasAnimalOfType(Detail detail) {
+    return animal != null && animal.getDetail() == detail;
+  }
 }
