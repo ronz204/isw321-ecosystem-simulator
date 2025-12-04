@@ -4,10 +4,10 @@ import com.isw.app.enums.Balance;
 import com.isw.app.properties.SimulationProperties;
 
 public class SimulateEcosystemHandler {
-  private final SimulationProperties properties = new SimulationProperties();
+  private final SimulationProperties properties;
 
-  public SimulationProperties getProperties() {
-    return properties;
+  public SimulateEcosystemHandler(SimulationProperties properties) {
+    this.properties = properties;
   }
 
   public SimulateEcosystemResponse handle(SimulateEcosystemCommand command) {

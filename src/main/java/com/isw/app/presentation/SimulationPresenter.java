@@ -6,20 +6,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 import com.isw.app.enums.Balance;
-import com.isw.app.handlers.simulate.SimulateEcosystemHandler;
-import com.isw.app.handlers.simulate.SimulateEcosystemResponse;
-import com.isw.app.handlers.simulate.SimulateEcosystemSchema;
 import com.isw.app.core.objects.Detail;
 import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.properties.SimulationProperties;
+import com.isw.app.handlers.simulate.SimulateEcosystemSchema;
+import com.isw.app.handlers.simulate.SimulateEcosystemHandler;
+import com.isw.app.handlers.simulate.SimulateEcosystemResponse;
 
 public class SimulationPresenter {
   private static final String ERROR_STYLE = "simulation-form__message--error";
   private static final String SUCCESS_STYLE = "simulation-form__message--success";
   private static final int MATRIX_SIZE = 10;
 
-  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler();
-  private final SimulationProperties properties = handler.getProperties();
+  private final SimulationProperties properties = new SimulationProperties();
+  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler(properties);
 
   private ToggleGroup grpScenario;
 
@@ -49,12 +49,13 @@ public class SimulationPresenter {
     rdoPredatorDominant.setToggleGroup(grpScenario);
 
     initializeMatrix();
-    setupBindings();
+    bindProperties();
+    bindListeners();
 
     rdoBalanced.setSelected(true);
   }
 
-  private void setupBindings() {
+  private void bindProperties() {
     lblTurnInfo.textProperty().bind(
         properties.currentTurn.asString()
             .concat(" / ")
@@ -66,16 +67,16 @@ public class SimulationPresenter {
     lblPredatorInfo.textProperty().bind(
         properties.predatorCount.asString("🦊 Depredadores: %d"));
 
+    btnStart.disableProperty().bind(properties.isRunning);
+  }
+
+  private void bindListeners() {
     properties.message.addListener((obs, oldVal, newVal) -> {
       lblMessage.setText(newVal);
     });
 
-    btnStart.disableProperty().bind(properties.isRunning);
-
     properties.ecosystem.addListener((obs, oldVal, newVal) -> {
-      if (newVal != null) {
-        updateMatrixUI();
-      }
+      if (newVal != null) updateMatrixUI();
     });
 
     properties.currentTurn.addListener((obs, oldVal, newVal) -> {
