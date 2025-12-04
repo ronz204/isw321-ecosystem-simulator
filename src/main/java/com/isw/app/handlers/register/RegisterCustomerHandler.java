@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.register;
 
 import com.isw.app.helpers.LocalDateHelper;
 import com.isw.app.repositories.customer.CustomerRepository;

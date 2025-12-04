@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.register;
 
 import java.time.LocalDate;
 import com.isw.app.models.Customer;

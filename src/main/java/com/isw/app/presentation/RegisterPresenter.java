@@ -7,11 +7,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 import com.isw.app.enums.FXMLPath;
+import com.isw.app.handlers.register.RegisterCustomerHandler;
+import com.isw.app.handlers.register.RegisterCustomerResponse;
+import com.isw.app.handlers.register.RegisterCustomerSchema;
 import com.isw.app.helpers.SwitcherHelper;
 import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.handlers.RegisterCustomerSchema;
-import com.isw.app.handlers.RegisterCustomerHandler;
-import com.isw.app.handlers.RegisterCustomerResponse;
 import com.isw.app.repositories.customer.CustomerRepository;
 import com.isw.app.repositories.customer.CustomerTLQRepository;
 
