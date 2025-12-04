@@ -3,15 +3,11 @@ package com.isw.app.core.objects;
 import com.isw.app.helpers.RandomHelper;
 
 public class Matrix {
-  private static final int ROWS = 10;
-  private static final int COLS = 10;
+  public static final int ROWS = 10;
+  public static final int COLS = 10;
   private Sector[][] sectors;
 
   public Matrix() {
-    setupSectors();
-  }
-
-  private void setupSectors() {
     sectors = new Sector[ROWS][COLS];
     for (int row = 0; row < ROWS; row++) {
       for (int col = 0; col < COLS; col++) {
@@ -37,13 +33,5 @@ public class Matrix {
     if (getSectorAt(row, col).isEmpty())
       return new Coord(row, col);
     return getRandomCoord();
-  }
-
-  public static int getRows() {
-    return ROWS;
-  }
-
-  public static int getCols() {
-    return COLS;
   }
 }
