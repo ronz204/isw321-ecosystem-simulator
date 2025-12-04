@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.simulate;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

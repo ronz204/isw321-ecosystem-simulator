@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.simulate;
 
 import com.isw.app.enums.Balance;
 import com.isw.app.properties.SimulationProperties;

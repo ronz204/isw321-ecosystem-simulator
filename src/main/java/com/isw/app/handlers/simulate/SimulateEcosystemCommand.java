@@ -1,4 +1,4 @@
-package com.isw.app.handlers;
+package com.isw.app.handlers.simulate;
 
 public record SimulateEcosystemCommand(
     Integer maxTurns,

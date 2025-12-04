@@ -6,12 +6,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 import com.isw.app.enums.Balance;
+import com.isw.app.handlers.simulate.SimulateEcosystemHandler;
+import com.isw.app.handlers.simulate.SimulateEcosystemResponse;
+import com.isw.app.handlers.simulate.SimulateEcosystemSchema;
 import com.isw.app.core.objects.Detail;
 import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.properties.SimulationProperties;
-import com.isw.app.handlers.SimulateEcosystemSchema;
-import com.isw.app.handlers.SimulateEcosystemHandler;
-import com.isw.app.handlers.SimulateEcosystemResponse;
 
 public class SimulationPresenter {
   private static final String ERROR_STYLE = "simulation-form__message--error";
