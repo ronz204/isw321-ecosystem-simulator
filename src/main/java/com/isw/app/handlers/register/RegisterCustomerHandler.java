@@ -1,6 +1,7 @@
 package com.isw.app.handlers.register;
 
 import com.isw.app.models.Customer;
+import com.isw.app.helpers.HashingHelper;
 import com.isw.app.helpers.LocalDateHelper;
 import com.isw.app.properties.RegisterProperties;
 import com.isw.app.repositories.customer.CustomerRepository;
@@ -34,7 +35,7 @@ public class RegisterCustomerHandler {
     customer.setName(schema.getName());
     customer.setEmail(schema.getEmail());
     customer.setGender(schema.getGender());
-    customer.setPassword(schema.getPassword());
+    customer.setPassword(HashingHelper.hash(schema.getPassword()));
     customer.setBirthday(schema.getBirthday());
     repository.save(customer);
 
