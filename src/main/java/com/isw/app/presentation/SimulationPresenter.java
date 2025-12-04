@@ -5,8 +5,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 public class SimulationPresenter {
-  private static final String ERROR_STYLE = "simulation-form__message--error";
-  private static final String SUCCESS_STYLE = "simulation-form__message--success";
+  /* private static final String ERROR_STYLE = "simulation-form__message--error";
+  private static final String SUCCESS_STYLE = "simulation-form__message--success"; */
 
   private ToggleGroup grpScenario;
 
