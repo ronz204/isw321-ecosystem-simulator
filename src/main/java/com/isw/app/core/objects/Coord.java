@@ -1,5 +1,7 @@
 package com.isw.app.core.objects;
 
+import com.isw.app.enums.Direction;
+
 public class Coord {
   private int row, col;
 
@@ -15,13 +17,10 @@ public class Coord {
   public int getCol() {
     return col;
   }
-
-  public void setRow(int row) {
-    this.row = row;
-  }
-
-  public void setCol(int col) {
-    this.col = col;
+  
+  public void move(Direction direction) {
+    this.row += direction.getDy();
+    this.col += direction.getDx();
   }
 
   public boolean isEqual(Coord other) {

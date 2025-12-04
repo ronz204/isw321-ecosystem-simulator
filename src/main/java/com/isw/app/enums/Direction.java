@@ -21,8 +21,4 @@ public enum Direction {
   public int getDy() {
     return dy;
   }
-
-  public int[] move(int x, int y) {
-    return new int[] { x + dx, y + dy };
-  }
 }
