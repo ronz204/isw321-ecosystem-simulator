@@ -1,5 +1,8 @@
 package com.isw.app.handlers;
 
-public record SimulateEcosystemCommand() {
-
+public record SimulateEcosystemCommand(
+    Integer maxTurns,
+    String balanceType,
+    boolean thirdSpeciesEnabled,
+    boolean geneticMutationEnabled) {
 }
