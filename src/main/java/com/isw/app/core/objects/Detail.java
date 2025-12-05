@@ -1,8 +1,10 @@
 package com.isw.app.core.objects;
 
 public enum Detail {
+  OMNIVORE("Omnivoro", "🐻"),
   CARNIVORE("Carnivoro", "🦊"),
-  HERBIVORE("Herbivoro", "🐰");
+  HERBIVORE("Herbivoro", "🐰"),
+  SCAVENGER("Carroñero", "🦅");
 
   private final String label;
   private final String icon;
