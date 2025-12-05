@@ -10,20 +10,18 @@ public class SimulateEcosystemSchema {
   private Integer maxTurns;
 
   @NotBlank(message = "Debe seleccionar un escenario de balance.")
-  private String balanceType;
+  private String balance;
 
-  private boolean thirdSpeciesEnabled;
-  private boolean geneticMutationEnabled;
-
-  public SimulateEcosystemSchema(Integer maxTurns, String balanceType,
-      boolean thirdSpeciesEnabled, boolean geneticMutationEnabled) {
+  public SimulateEcosystemSchema(Integer maxTurns, String balance) {
+    this.balance = balance;
     this.maxTurns = maxTurns;
-    this.balanceType = balanceType;
-    this.thirdSpeciesEnabled = thirdSpeciesEnabled;
-    this.geneticMutationEnabled = geneticMutationEnabled;
   }
 
-  public SimulateEcosystemCommand toCommand() {
-    return new SimulateEcosystemCommand(maxTurns, balanceType, thirdSpeciesEnabled, geneticMutationEnabled);
+  public String getBalance() {
+    return balance;
+  }
+
+  public Integer getMaxTurns() {
+    return maxTurns;
   }
 }
