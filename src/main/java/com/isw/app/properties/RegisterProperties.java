@@ -14,8 +14,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class RegisterProperties {
 
-  private static final String ERROR_STYLE = "register-form__message--error";
-  private static final String SUCCESS_STYLE = "register-form__message--success";
+  private final String ERROR_STYLE = "register-form__message--error";
+  private final String SUCCESS_STYLE = "register-form__message--success";
 
   private final StringProperty name = new SimpleStringProperty();
   private final StringProperty email = new SimpleStringProperty();
