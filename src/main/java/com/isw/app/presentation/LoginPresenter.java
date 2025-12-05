@@ -32,6 +32,7 @@ public class LoginPresenter {
     properties.bindFldCedula(fldCedula);
     properties.bindLblMessage(lblMessage);
     properties.bindFldPassword(fldPassword);
+    
     properties.listenLblMessage(lblMessage);
   }
 

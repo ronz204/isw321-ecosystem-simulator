@@ -45,6 +45,7 @@ public class RegisterPresenter {
     properties.bindLblMessage(lblMessage);
     properties.bindFldPassword(fldPassword);
     properties.bindFldBirthday(fldBirthday);
+    
     properties.listenLblMessage(lblMessage);
     properties.listenRdoGender(rdoMale, rdoFemale, grpGender);
   }
