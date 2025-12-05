@@ -26,4 +26,11 @@ public enum Balance {
   public int getPredatorAmount() {
     return predatorAmount;
   }
+
+  public static Balance fromName(String name) {
+    for (Balance balance : Balance.values()) {
+      if (balance.getName().equals(name)) return balance;
+    }
+    return BALANCED;
+  }
 }

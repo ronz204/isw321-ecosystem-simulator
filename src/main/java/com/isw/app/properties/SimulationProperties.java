@@ -1,13 +1,15 @@
 package com.isw.app.properties;
 
+import com.isw.app.enums.Balance;
 import javafx.scene.control.Label;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -19,8 +21,9 @@ public class SimulationProperties {
   private final String SUCCESS_STYLE = "simulation-form__message--success";
 
   private final IntegerProperty maxTurns = new SimpleIntegerProperty();
-  private final StringProperty scenario = new SimpleStringProperty();
   private final StringProperty message = new SimpleStringProperty("");
+
+  private final ObjectProperty<Balance> balance = new SimpleObjectProperty<>(Balance.BALANCED);
 
   private final BooleanProperty thirdSpecies = new SimpleBooleanProperty();
   private final BooleanProperty geneticMutation = new SimpleBooleanProperty();
@@ -33,12 +36,12 @@ public class SimulationProperties {
     maxTurns.set(value);
   }
 
-  public String getScenario() {
-    return scenario.get();
+  public Balance getBalance() {
+    return balance.get();
   }
 
-  public void setScenario(String value) {
-    scenario.set(value);
+  public void setBalance(Balance value) {
+    balance.set(value);
   }
 
   public boolean getThirdSpecies() {
@@ -70,7 +73,8 @@ public class SimulationProperties {
   }
 
   public void bindFldMaxTurns(TextField maxTurns) {
-    maxTurns.textProperty().bindBidirectional(this.maxTurns, new NumberStringConverter());
+    NumberStringConverter converter = new NumberStringConverter();
+    maxTurns.textProperty().bindBidirectional(this.maxTurns, converter);
   }
 
   public void bindChkThirdSpecies(CheckBox thirdSpecies) {
@@ -81,41 +85,29 @@ public class SimulationProperties {
     geneticMutation.selectedProperty().bindBidirectional(this.geneticMutation);
   }
 
+  public void bindRdoScenario(ToggleGroup grpScenario) {
+    grpScenario.selectedToggleProperty().addListener((obs, prev, next) -> {
+      if (next != null && next.getUserData() instanceof Balance) {
+        this.balance.set((Balance) next.getUserData());
+      }
+    });
+
+    this.balance.addListener((obs, prev, next) -> {
+      if (next != null) {
+        grpScenario.getToggles().stream()
+            .filter(toggle -> next.equals(toggle.getUserData()))
+            .findFirst()
+            .ifPresent(toggle -> grpScenario.selectToggle(toggle));
+      }
+    });
+  }
+
   public void listenLblMessage(Label label) {
     this.message.addListener((obs, prev, next) -> {
       label.getStyleClass().removeAll(ERROR_STYLE, SUCCESS_STYLE);
 
       if (next != null && !next.isEmpty()) {
         label.getStyleClass().add(next.contains("exitosamente") ? SUCCESS_STYLE : ERROR_STYLE);
-      }
-    });
-  }
-
-  public void listenRdoScenario(RadioButton rdoBalanced, RadioButton rdoPreyDominant, RadioButton rdoPredatorDominant,
-      ToggleGroup grpScenario) {
-    this.scenario.addListener((obs, prev, next) -> {
-      if ("Balanceado".equals(next)) {
-        rdoBalanced.setSelected(true);
-      } else if ("Presas Dominantes".equals(next)) {
-        rdoPreyDominant.setSelected(true);
-      } else if ("Depredadores Dominantes".equals(next)) {
-        rdoPredatorDominant.setSelected(true);
-      } else {
-        rdoBalanced.setSelected(false);
-        rdoPreyDominant.setSelected(false);
-        rdoPredatorDominant.setSelected(false);
-      }
-    });
-
-    grpScenario.selectedToggleProperty().addListener((obs, prev, next) -> {
-      if (rdoBalanced.isSelected()) {
-        this.scenario.set("Balanceado");
-      } else if (rdoPreyDominant.isSelected()) {
-        this.scenario.set("Presas Dominantes");
-      } else if (rdoPredatorDominant.isSelected()) {
-        this.scenario.set("Depredadores Dominantes");
-      } else {
-        this.scenario.set(null);
       }
     });
   }

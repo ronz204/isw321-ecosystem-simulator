@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.PasswordField;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.ObjectProperty;
@@ -20,8 +19,8 @@ public class RegisterProperties {
   private final StringProperty name = new SimpleStringProperty();
   private final StringProperty email = new SimpleStringProperty();
   private final StringProperty cedula = new SimpleStringProperty();
-  private final StringProperty gender = new SimpleStringProperty();
   private final StringProperty password = new SimpleStringProperty();
+  private final StringProperty gender = new SimpleStringProperty();
   private final ObjectProperty<LocalDate> birthday = new SimpleObjectProperty<>();
   private final StringProperty message = new SimpleStringProperty("");
 
@@ -105,35 +104,29 @@ public class RegisterProperties {
     birthday.valueProperty().bindBidirectional(this.birthday);
   }
 
+  public void bindRdoGender(ToggleGroup grpGender) {
+    grpGender.selectedToggleProperty().addListener((obs, prev, next) -> {
+      if (next != null && next.getUserData() instanceof String) {
+        this.gender.set((String) next.getUserData());
+      }
+    });
+
+    this.gender.addListener((obs, prev, next) -> {
+      if (next != null) {
+        grpGender.getToggles().stream()
+            .filter(toggle -> next.equals(toggle.getUserData()))
+            .findFirst()
+            .ifPresent(toggle -> grpGender.selectToggle(toggle));
+      }
+    });
+  }
+
   public void listenLblMessage(Label label) {
     this.message.addListener((obs, prev, next) -> {
       label.getStyleClass().removeAll(ERROR_STYLE, SUCCESS_STYLE);
 
       if (next != null && !next.isEmpty()) {
         label.getStyleClass().add(next.contains("exitosamente") ? SUCCESS_STYLE : ERROR_STYLE);
-      }
-    });
-  }
-
-  public void listenRdoGender(RadioButton rdoMale, RadioButton rdoFemale, ToggleGroup grpGender) {
-    this.gender.addListener((obs, prev, next) -> {
-      if ("Masculino".equals(next)) {
-        rdoMale.setSelected(true);
-      } else if ("Femenino".equals(next)) {
-        rdoFemale.setSelected(true);
-      } else {
-        rdoMale.setSelected(false);
-        rdoFemale.setSelected(false);
-      }
-    });
-
-    grpGender.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
-      if (rdoMale.isSelected()) {
-        this.gender.set("Masculino");
-      } else if (rdoFemale.isSelected()) {
-        this.gender.set("Femenino");
-      } else {
-        this.gender.set(null);
       }
     });
   }

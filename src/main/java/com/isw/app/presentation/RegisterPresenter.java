@@ -39,15 +39,18 @@ public class RegisterPresenter {
     rdoMale.setToggleGroup(grpGender);
     rdoFemale.setToggleGroup(grpGender);
 
+    rdoMale.setUserData("Masculino");
+    rdoFemale.setUserData("Femenino");
+
     properties.bindFldName(fldName);
     properties.bindFldEmail(fldEmail);
     properties.bindFldCedula(fldCedula);
+    properties.bindRdoGender(grpGender);
     properties.bindLblMessage(lblMessage);
     properties.bindFldPassword(fldPassword);
     properties.bindFldBirthday(fldBirthday);
     
     properties.listenLblMessage(lblMessage);
-    properties.listenRdoGender(rdoMale, rdoFemale, grpGender);
   }
 
   @FXML
