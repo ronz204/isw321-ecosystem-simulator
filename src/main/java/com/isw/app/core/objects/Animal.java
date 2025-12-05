@@ -25,8 +25,8 @@ public class Animal {
   public Coord getCoord() {
     return coord;
   }
-  public String getType() {
-    return detail.getType();
+  public String getLabel() {
+    return detail.getLabel();
   }
 
   public Detail getDetail() {

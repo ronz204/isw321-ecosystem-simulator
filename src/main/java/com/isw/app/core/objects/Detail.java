@@ -4,16 +4,16 @@ public enum Detail {
   CARNIVORE("Carnivoro", "🦊"),
   HERBIVORE("Herbivoro", "🐰");
 
-  private final String type;
+  private final String label;
   private final String icon;
 
-  Detail(String type, String icon) {
-    this.type = type;
+  Detail(String label, String icon) {
+    this.label = label;
     this.icon = icon;
   }
 
-  public String getType() {
-    return type;
+  public String getLabel() {
+    return label;
   }
 
   public String getIcon() {

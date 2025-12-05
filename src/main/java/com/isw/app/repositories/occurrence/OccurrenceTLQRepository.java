@@ -15,7 +15,7 @@ public class OccurrenceTLQRepository extends BaseTLQRepository implements Occurr
       writeDelimiter(writer);
       writeField(writer, "uuid", occurrence.getUuid());
       writeField(writer, "animal_uuid", occurrence.getAnimal().getUuid());
-      writeField(writer, "animal_type", occurrence.getAnimal().getType());
+      writeField(writer, "animal_label", occurrence.getAnimal().getLabel());
       writeField(writer, "sector_row", String.valueOf(occurrence.getSector().getCoord().getRow()));
       writeField(writer, "sector_col", String.valueOf(occurrence.getSector().getCoord().getCol()));
       writeField(writer, "description", occurrence.getDescription());
