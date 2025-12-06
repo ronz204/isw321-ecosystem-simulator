@@ -1,6 +1,5 @@
 package com.isw.app.core.factories;
 
-
 import java.util.Map;
 import java.util.HashMap;
 import com.isw.app.core.objects.Coord;
