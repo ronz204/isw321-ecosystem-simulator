@@ -23,10 +23,10 @@ public class SimulationPresenter {
   private Button btnStart;
 
   @FXML
-  private GridPane gridMatrix;
+  private TextField fldTurns;
 
   @FXML
-  private TextField fldMaxTurns;
+  private GridPane gridMatrix;
 
   @FXML
   private CheckBox chkThirdSpecies, chkGeneticMutation;
@@ -48,8 +48,8 @@ public class SimulationPresenter {
     rdoPreyDominant.setUserData(Balance.PREY_DOMINANT);
     rdoPredatorDominant.setUserData(Balance.PREDATOR_DOMINANT);
 
+    properties.bindFldTurns(fldTurns);
     properties.bindLblMessage(lblMessage);
-    properties.bindFldMaxTurns(fldMaxTurns);
     properties.bindRdoScenario(grpScenario);
     properties.bindChkThirdSpecies(chkThirdSpecies);
     properties.bindChkGeneticMutation(chkGeneticMutation);
@@ -81,7 +81,7 @@ public class SimulationPresenter {
   @FXML
   public void onStartClick() {
     SimulateEcosystemSchema schema = new SimulateEcosystemSchema(
-      properties.getMaxTurns(),
+      properties.getTurns(),
       properties.getBalance().getName()
     );
 

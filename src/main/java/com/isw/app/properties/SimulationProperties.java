@@ -20,7 +20,7 @@ public class SimulationProperties {
   private final String ERROR_STYLE = "simulation-form__message--error";
   private final String SUCCESS_STYLE = "simulation-form__message--success";
 
-  private final IntegerProperty maxTurns = new SimpleIntegerProperty();
+  private final IntegerProperty turns = new SimpleIntegerProperty();
 
   private final BooleanProperty thirdSpecies = new SimpleBooleanProperty();
   private final BooleanProperty geneticMutation = new SimpleBooleanProperty();
@@ -28,12 +28,12 @@ public class SimulationProperties {
   private final StringProperty message = new SimpleStringProperty("");
   private final ObjectProperty<Balance> balance = new SimpleObjectProperty<>(Balance.BALANCED);
 
-  public Integer getMaxTurns() {
-    return maxTurns.get();
+  public Integer getTurns() {
+    return turns.get();
   }
 
-  public void setMaxTurns(Integer value) {
-    maxTurns.set(value);
+  public void setTurns(Integer value) {
+    turns.set(value);
   }
 
   public Balance getBalance() {
@@ -72,9 +72,9 @@ public class SimulationProperties {
     label.textProperty().bind(this.message);
   }
 
-  public void bindFldMaxTurns(TextField maxTurns) {
+  public void bindFldTurns(TextField turns) {
     NumberStringConverter converter = new NumberStringConverter();
-    maxTurns.textProperty().bindBidirectional(this.maxTurns, converter);
+    turns.textProperty().bindBidirectional(this.turns, converter);
   }
 
   public void bindChkThirdSpecies(CheckBox thirdSpecies) {
