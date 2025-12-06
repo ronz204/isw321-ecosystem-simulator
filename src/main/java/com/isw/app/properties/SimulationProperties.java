@@ -21,12 +21,12 @@ public class SimulationProperties {
   private final String SUCCESS_STYLE = "simulation-form__message--success";
 
   private final IntegerProperty maxTurns = new SimpleIntegerProperty();
-  private final StringProperty message = new SimpleStringProperty("");
-
-  private final ObjectProperty<Balance> balance = new SimpleObjectProperty<>(Balance.BALANCED);
 
   private final BooleanProperty thirdSpecies = new SimpleBooleanProperty();
   private final BooleanProperty geneticMutation = new SimpleBooleanProperty();
+
+  private final StringProperty message = new SimpleStringProperty("");
+  private final ObjectProperty<Balance> balance = new SimpleObjectProperty<>(Balance.BALANCED);
 
   public Integer getMaxTurns() {
     return maxTurns.get();

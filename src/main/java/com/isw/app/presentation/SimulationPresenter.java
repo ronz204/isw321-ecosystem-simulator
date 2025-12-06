@@ -1,9 +1,12 @@
 package com.isw.app.presentation;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import com.isw.app.enums.Balance;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import com.isw.app.core.objects.Matrix;
 import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.properties.SimulationProperties;
 import com.isw.app.handlers.simulate.SimulateEcosystemSchema;
@@ -52,6 +55,27 @@ public class SimulationPresenter {
     properties.bindChkGeneticMutation(chkGeneticMutation);
     
     properties.listenLblMessage(lblMessage);
+    
+    drawMatrix();
+  }
+  
+  private void drawMatrix() {
+    gridMatrix.getChildren().clear();
+    
+    for (int row = 0; row < Matrix.ROWS; row++) {
+      for (int col = 0; col < Matrix.COLS; col++) {
+        Label cellLabel = new Label("🌿");
+
+        cellLabel.getStyleClass().add("matrix-cell__icon");
+        cellLabel.setAlignment(Pos.CENTER);
+        cellLabel.setMaxWidth(Double.MAX_VALUE);
+        cellLabel.setMaxHeight(Double.MAX_VALUE);
+        
+        StackPane cell = new StackPane(cellLabel);
+        cell.getStyleClass().add("matrix-cell");
+        gridMatrix.add(cell, col, row);
+      }
+    }
   }
 
   @FXML

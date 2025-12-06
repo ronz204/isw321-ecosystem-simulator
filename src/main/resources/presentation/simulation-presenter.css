@@ -109,30 +109,40 @@
 
 /* Block: matrix, Element: grid */
 .matrix-grid {
-  -fx-background-color: #f5f5f5;
-  -fx-padding: 10;
-  -fx-hgap: 2;
-  -fx-vgap: 2;
-  -fx-background-radius: 8;
+  -fx-background-color: #e8f5e9;
+  -fx-padding: 8;
+  -fx-hgap: 4;
+  -fx-vgap: 4;
+  -fx-background-radius: 12;
+  -fx-effect: innershadow(gaussian, rgba(46, 125, 50, 0.15), 8, 0, 0, 2);
 }
 
 /* Block: matrix, Element: cell */
 .matrix-cell {
-  -fx-background-color: white;
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #f9fff9);
   -fx-border-color: #c8e6c9;
-  -fx-border-width: 1;
-  -fx-pref-width: 50;
-  -fx-pref-height: 50;
+  -fx-border-width: 1.5;
+  -fx-min-width: 45px;
+  -fx-min-height: 45px;
+  -fx-pref-width: 45px;
+  -fx-pref-height: 45px;
+  -fx-max-width: 45px;
+  -fx-max-height: 45px;
   -fx-alignment: center;
-  -fx-background-radius: 4;
+  -fx-background-radius: 6;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 3, 0, 0, 1);
 }
 
 .matrix-cell:hover {
-  -fx-border-color: #66bb6a;
+  -fx-background-color: linear-gradient(to bottom, #f1f8e9, #dcedc8);
+  -fx-border-color: #81c784;
   -fx-border-width: 2;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(129, 199, 132, 0.4), 6, 0, 0, 2);
 }
 
 /* Block: matrix, Element: cell-icon */
 .matrix-cell__icon {
-  -fx-font-size: 28px;
+  -fx-font-size: 26px;
+  -fx-effect: dropshadow(gaussian, rgba(46, 125, 50, 0.2), 2, 0, 0, 1);
 }
