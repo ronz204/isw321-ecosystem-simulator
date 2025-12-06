@@ -17,13 +17,18 @@ public class Coord {
   public int getCol() {
     return col;
   }
-  
-  public void move(Direction direction) {
-    this.row += direction.getDy();
-    this.col += direction.getDx();
+
+  public Coord move(Direction direction) {
+    return new Coord(
+        this.row + direction.getDy(),
+        this.col + direction.getDx());
   }
 
   public boolean isEqual(Coord other) {
     return this.row == other.row && this.col == other.col;
+  }
+
+  public int distanceTo(Coord other) {
+    return Math.abs(this.row - other.row) + Math.abs(this.col - other.col);
   }
 }

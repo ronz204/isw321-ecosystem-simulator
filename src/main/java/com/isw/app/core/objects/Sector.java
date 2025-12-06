@@ -13,16 +13,16 @@ public class Sector {
     return coord;
   }
 
-  public boolean isEmpty() {
-    return animal == null;
-  }
-
   public Animal getAnimal() {
     return animal;
   }
 
   public void setAnimal(Animal animal) {
     this.animal = animal;
+  }
+
+  public boolean isEmpty() {
+    return animal == null;
   }
 
   public boolean hasAnimalOfType(Detail detail) {

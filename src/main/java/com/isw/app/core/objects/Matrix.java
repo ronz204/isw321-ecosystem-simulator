@@ -1,5 +1,9 @@
 package com.isw.app.core.objects;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.isw.app.enums.Direction;
 import com.isw.app.helpers.RandomHelper;
 
 public class Matrix {
@@ -17,12 +21,13 @@ public class Matrix {
     }
   }
 
-  private boolean isValidCoord(int row, int col) {
-    return row >= 0 && row < ROWS && col >= 0 && col < COLS;
+  private boolean isValidCoord(Coord coord) {
+    return coord.getRow() >= 0 && coord.getRow() < ROWS && coord.getCol() >= 0 && coord.getCol() < COLS;
   }
 
-  public Sector getSectorAt(int row, int col) {
-    if (isValidCoord(row, col)) return sectors[row][col];
+  public Sector getSectorAt(Coord coord) {
+    if (isValidCoord(coord))
+      return sectors[coord.getRow()][coord.getCol()];
     throw new IndexOutOfBoundsException("Invalid sector coordinates");
   }
 
@@ -30,8 +35,49 @@ public class Matrix {
     int row = RandomHelper.getRandomInt(0, ROWS - 1);
     int col = RandomHelper.getRandomInt(0, COLS - 1);
 
-    if (getSectorAt(row, col).isEmpty())
-      return new Coord(row, col);
+    Coord coord = new Coord(row, col);
+    if (getSectorAt(coord).isEmpty())
+      return coord;
     return getRandomCoord();
+  }
+
+  public List<Coord> getAdjacentCoords(Coord coord) {
+    List<Coord> adjacent = new ArrayList<>();
+
+    for (Direction dir : Direction.values()) {
+      Coord move = coord.move(dir);
+
+      if (isValidCoord(move)) {
+        adjacent.add(move);
+      }
+    }
+
+    return adjacent;
+  }
+
+  public List<Coord> getAdjacentEmptySectors(Coord coord) {
+    List<Coord> empty = new ArrayList<>();
+
+    for (Coord adjacent : getAdjacentCoords(coord)) {
+      if (getSectorAt(adjacent).isEmpty()) {
+        empty.add(adjacent);
+      }
+    }
+
+    return empty;
+  }
+
+  public List<Animal> getAdjacentAnimalsOfType(Coord coord, Detail detail) {
+    List<Animal> animals = new ArrayList<>();
+
+    for (Coord adjacent : getAdjacentCoords(coord)) {
+      Sector sector = getSectorAt(adjacent);
+
+      if (sector.hasAnimalOfType(detail)) {
+        animals.add(sector.getAnimal());
+      }  
+    }
+
+    return animals;
   }
 }
