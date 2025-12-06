@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.HashMap;
 import com.isw.app.core.objects.Coord;
 import com.isw.app.core.objects.Detail;
-import com.isw.app.core.objects.Matrix;
 import com.isw.app.core.objects.Animal;
 import com.isw.app.core.behavior.Behavior;
 import com.isw.app.core.behavior.OmnivoreBehavior;
@@ -24,8 +23,7 @@ public class AnimalFactory {
     behaviors.put(Detail.SCAVENGER, new ScavengerBehavior());
   }
 
-  public static Animal build(Detail detail, Matrix matrix) {
-    Coord coord = matrix.getRandomCoord();
+  public static Animal build(Detail detail, Coord coord) {
     Behavior behavior = behaviors.get(detail);
     return new Animal(detail, coord, behavior);
   }
