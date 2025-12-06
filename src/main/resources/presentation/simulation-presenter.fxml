@@ -33,7 +33,7 @@
       
       <HBox spacing="8" alignment="CENTER_LEFT">
         <Label text="Turnos máximos:" styleClass="simulation-form__label" />
-        <TextField fx:id="fldMaxTurns" promptText="Ej: 50" 
+        <TextField fx:id="fldTurns" promptText="Ej: 50" 
           styleClass="simulation-form__field" />
       </HBox>
 

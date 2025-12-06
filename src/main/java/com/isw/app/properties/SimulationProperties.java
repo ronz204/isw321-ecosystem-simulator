@@ -20,7 +20,7 @@ public class SimulationProperties {
   private final String ERROR_STYLE = "simulation-form__message--error";
   private final String SUCCESS_STYLE = "simulation-form__message--success";
 
-  private final IntegerProperty turns = new SimpleIntegerProperty();
+  private final IntegerProperty turns = new SimpleIntegerProperty(1);
 
   private final BooleanProperty thirdSpecies = new SimpleBooleanProperty();
   private final BooleanProperty geneticMutation = new SimpleBooleanProperty();

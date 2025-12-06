@@ -10,6 +10,6 @@ public class SimulateEcosystemHandler {
   }
 
   public void handle(SimulateEcosystemSchema schema) {
-    properties.setTurns(null);
+    properties.setTurns(10);
   }
 }
