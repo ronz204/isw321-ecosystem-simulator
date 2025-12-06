@@ -13,7 +13,7 @@ public class AttemptHunt {
     List<Animal> adjacent = matrix.getAdjacentAnimals(hunter.getCoord());
 
     List<Animal> preies = adjacent.stream()
-        .filter(animal -> animal.getTier() < hunter.getTier())
+        .filter(animal -> animal.getTier() <= hunter.getTier())
         .collect(Collectors.toList());
 
     if (preies.isEmpty()) {
