@@ -1,4 +1,3 @@
-
 /* Block: simulation */
 .simulation {
   -fx-background-color: linear-gradient(to bottom, #e8ffe8, #b3e6b3);
@@ -139,6 +138,17 @@
   -fx-border-width: 2;
   -fx-cursor: hand;
   -fx-effect: dropshadow(gaussian, rgba(129, 199, 132, 0.4), 6, 0, 0, 2);
+}
+
+/* Block: matrix, Element: cell, Modifier: occupied */
+.matrix-cell--occupied {
+  -fx-background-color: linear-gradient(to bottom, #fff9c4, #fff59d);
+  -fx-border-color: #fbc02d;
+}
+
+.matrix-cell--occupied:hover {
+  -fx-background-color: linear-gradient(to bottom, #ffeb3b, #fdd835);
+  -fx-border-color: #f57f17;
 }
 
 /* Block: matrix, Element: cell-icon */

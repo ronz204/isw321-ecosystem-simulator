@@ -1,5 +1,6 @@
 package com.isw.app.handlers.simulate;
 
+import com.isw.app.enums.Balance;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
@@ -17,8 +18,8 @@ public class SimulateEcosystemSchema {
     this.maxTurns = maxTurns;
   }
 
-  public String getBalance() {
-    return balance;
+  public Balance getBalance() {
+    return Balance.fromLabel(balance);
   }
 
   public Integer getMaxTurns() {

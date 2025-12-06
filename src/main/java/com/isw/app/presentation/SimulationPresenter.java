@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import com.isw.app.enums.Balance;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import com.isw.app.core.objects.Coord;
+import com.isw.app.core.objects.Sector;
 import com.isw.app.core.objects.Matrix;
 import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.properties.SimulationProperties;
@@ -45,8 +47,8 @@ public class SimulationPresenter {
     rdoPredatorDominant.setToggleGroup(grpScenario);
 
     rdoBalanced.setUserData(Balance.BALANCED);
-    rdoPreyDominant.setUserData(Balance.PREY_DOMINANT);
-    rdoPredatorDominant.setUserData(Balance.PREDATOR_DOMINANT);
+    rdoPreyDominant.setUserData(Balance.HERBIVORE_DOMINANT);
+    rdoPredatorDominant.setUserData(Balance.CARNIVORE_DOMINANT);
 
     properties.bindFldTurns(fldTurns);
     properties.bindLblMessage(lblMessage);
@@ -62,17 +64,30 @@ public class SimulationPresenter {
   private void drawMatrix() {
     gridMatrix.getChildren().clear();
     
+    Matrix matrix = handler.getContext().getMatrix();
+    
     for (int row = 0; row < Matrix.ROWS; row++) {
       for (int col = 0; col < Matrix.COLS; col++) {
-        Label cellLabel = new Label("🌿");
+
+        Coord coord = new Coord(row, col);
+        Sector sector = matrix.getSectorAt(coord);
+        
+        String icon = sector.getIcon();
+        Label cellLabel = new Label(icon);
 
         cellLabel.getStyleClass().add("matrix-cell__icon");
         cellLabel.setAlignment(Pos.CENTER);
+        
         cellLabel.setMaxWidth(Double.MAX_VALUE);
         cellLabel.setMaxHeight(Double.MAX_VALUE);
         
         StackPane cell = new StackPane(cellLabel);
         cell.getStyleClass().add("matrix-cell");
+        
+        if (!sector.isEmpty()) {
+          cell.getStyleClass().add("matrix-cell--occupied");
+        }
+        
         gridMatrix.add(cell, col, row);
       }
     }
@@ -82,7 +97,7 @@ public class SimulationPresenter {
   public void onStartClick() {
     SimulateEcosystemSchema schema = new SimulateEcosystemSchema(
       properties.getTurns(),
-      properties.getBalance().getName()
+      properties.getBalance().getLabel()
     );
 
     var violations = ValidatorHelper.validate(schema);
@@ -92,5 +107,7 @@ public class SimulationPresenter {
     }
 
     handler.handle(schema);
+    drawMatrix();
+    properties.setMessage("Ecosistema iniciado correctamente");
   }
 }
