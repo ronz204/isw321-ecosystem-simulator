@@ -17,6 +17,10 @@ public class Sector {
     return animal;
   }
 
+  public String getIcon() {
+    return animal != null ? animal.getIcon() : "🌿";
+  }
+
   public void setAnimal(Animal animal) {
     this.animal = animal;
   }

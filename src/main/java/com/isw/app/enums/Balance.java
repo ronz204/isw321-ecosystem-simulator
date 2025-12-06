@@ -1,35 +1,54 @@
 package com.isw.app.enums;
 
+import com.isw.app.core.objects.Detail;
+
 public enum Balance {
-  BALANCED("Balanceado", 10, 10),
-  PREY_DOMINANT("Presas Dominantes", 20, 10),
-  PREDATOR_DOMINANT("Depredadores Dominantes", 10, 20);
+  BALANCED("Balanceado") {
+    @Override
+    public int getPopulation(Detail detail) {
+      switch (detail) {
+        case HERBIVORE: return 5;
+        case CARNIVORE: return 3;
+        default: return 5;
+      }
+    }
+  },
+  HERBIVORE_DOMINANT("Herbívoros Dominantes") {
+    @Override
+    public int getPopulation(Detail detail) {
+      switch (detail) {
+        case HERBIVORE: return 10;
+        case CARNIVORE: return 2;
+        default: return 5;
+      }
+    }
+  },
+  CARNIVORE_DOMINANT("Carnívoros Dominantes") {
+    @Override
+    public int getPopulation(Detail detail) {
+      switch (detail) {
+        case HERBIVORE: return 6;
+        case CARNIVORE: return 8;
+        default: return 5;
+      }
+    }
+  };
 
-  private final String name;
-  private final int preyAmount;
-  private final int predatorAmount;
+  private final String label;
 
-  Balance(String name, int prey, int predator) {
-    this.name = name;
-    this.preyAmount = prey;
-    this.predatorAmount = predator;
+  Balance(String label) {
+    this.label = label;
   }
 
-  public String getName() {
-    return name;
+  public String getLabel() {
+    return label;
   }
 
-  public int getPreyAmount() {
-    return preyAmount;
-  }
+  public abstract int getPopulation(Detail detail);
 
-  public int getPredatorAmount() {
-    return predatorAmount;
-  }
-
-  public static Balance fromName(String name) {
+  public static Balance fromLabel(String label) {
     for (Balance balance : Balance.values()) {
-      if (balance.getName().equals(name)) return balance;
+      if (balance.getLabel().equals(label)) return balance;
     }
     return BALANCED;
   }

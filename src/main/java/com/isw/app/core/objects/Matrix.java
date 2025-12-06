@@ -67,15 +67,15 @@ public class Matrix {
     return empty;
   }
 
-  public List<Animal> getAdjacentAnimalsOfType(Coord coord, Detail detail) {
+  public List<Animal> getAdjacentAnimals(Coord coord) {
     List<Animal> animals = new ArrayList<>();
 
     for (Coord adjacent : getAdjacentCoords(coord)) {
       Sector sector = getSectorAt(adjacent);
 
-      if (sector.hasAnimalOfType(detail)) {
+      if (!sector.isEmpty()) {
         animals.add(sector.getAnimal());
-      }  
+      }
     }
 
     return animals;

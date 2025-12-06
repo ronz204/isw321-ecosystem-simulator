@@ -27,6 +27,8 @@ public class Result {
     Result result = new Result(Action.EAT);
     result.target = target;
     result.actor = actor;
+    result.fromCoord = actor.getCoord();
+    result.toCoord = target.getCoord();
     return result;
   }
 
@@ -34,17 +36,24 @@ public class Result {
     Result result = new Result(Action.REPRODUCE);
     result.actor = actor;
     result.child = child;
+    result.fromCoord = actor.getCoord();
+    result.toCoord = child.getCoord();
     return result;
   }
 
   public static Result death(Animal actor) {
     Result result = new Result(Action.DEATH);
     result.actor = actor;
+    result.fromCoord = actor.getCoord();
+    result.toCoord = actor.getCoord();
     return result;
   }
 
   public static Result idle() {
-    return new Result(Action.IDLE);
+    Result result = new Result(Action.IDLE);
+    result.fromCoord = null;
+    result.toCoord = null;
+    return result;
   }
 
   public Action getAction() {

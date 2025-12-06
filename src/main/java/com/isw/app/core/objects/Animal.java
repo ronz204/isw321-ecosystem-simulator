@@ -47,6 +47,10 @@ public class Animal {
     return detail.getIcon();
   }
 
+  public int getTier() {
+    return detail.getTier();
+  }
+
   public Detail getDetail() {
     return detail;
   }
