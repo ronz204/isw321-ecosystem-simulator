@@ -3,6 +3,7 @@ package com.isw.app.enums;
 import java.nio.file.Paths;
 
 public enum DataPath {
+  ACTIONS("actions.txt"),
   CUSTOMERS("customers.txt"),
   ECOSYSTEMS("ecosystems.txt"),
   OCCURRENCES("occurrences.txt");
