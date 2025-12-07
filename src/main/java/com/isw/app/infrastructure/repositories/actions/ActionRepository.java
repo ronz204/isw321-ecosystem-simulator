@@ -1,5 +1,7 @@
 package com.isw.app.infrastructure.repositories.actions;
 
-public interface ActionRepository {
+import com.isw.app.domain.core.objects.Result;
 
+public interface ActionRepository {
+  void save(Result result);
 }
