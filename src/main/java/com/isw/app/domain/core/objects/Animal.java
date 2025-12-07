@@ -14,8 +14,8 @@ public class Animal {
     this.coord = coord;
   }
 
-  public void act() {
-    behavior.act(this);
+  public void act(Matrix matrix) {
+    behavior.act(this, matrix);
   }
 
   public Coord getCoord() {

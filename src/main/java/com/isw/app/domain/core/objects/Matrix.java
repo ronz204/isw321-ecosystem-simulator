@@ -55,4 +55,12 @@ public class Matrix {
   public List<Animal> getAdjacentAnimals(Coord coord) {
     return service.getAdjacentAnimals(coord);
   }
+
+  public void clear() {
+    for (int row = 0; row < ROWS; row++) {
+      for (int col = 0; col < COLS; col++) {
+        sectors[row][col].setAnimal(null);
+      }
+    }
+  }
 }
