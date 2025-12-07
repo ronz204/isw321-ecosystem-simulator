@@ -3,7 +3,7 @@ package com.isw.app.domain.core.behaviors;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Matrix;
 
-public class HerbivoreBehavior extends Behavior {
+public class CarnivoreBehavior extends Behavior {
   private final int REPRODUCTION_THRESHOLD = 2;
 
   @Override
