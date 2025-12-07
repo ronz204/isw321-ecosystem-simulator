@@ -1,4 +1,4 @@
-package com.isw.app.repositories;
+package com.isw.app.infrastructure.repositories;
 
 import java.util.Map;
 import java.util.List;

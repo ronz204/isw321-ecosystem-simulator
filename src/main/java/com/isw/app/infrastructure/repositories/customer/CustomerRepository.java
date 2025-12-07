@@ -1,7 +1,7 @@
-package com.isw.app.repositories.customer;
+package com.isw.app.infrastructure.repositories.customer;
 
 import java.util.Optional;
-import com.isw.app.models.Customer;
+import com.isw.app.domain.models.Customer;
 
 public interface CustomerRepository {
   void save(Customer customer);

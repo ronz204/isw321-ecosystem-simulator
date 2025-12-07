@@ -1,22 +1,20 @@
-package com.isw.app.repositories.customer;
+package com.isw.app.infrastructure.repositories.customer;
 
-import java.util.Optional;
 import java.util.Map;
-
+import java.util.Optional;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import com.isw.app.enums.Gender;
-import com.isw.app.enums.DataPath;
-import com.isw.app.models.Customer;
-import com.isw.app.helpers.BufferedHelper;
-import com.isw.app.repositories.BaseTLQRepository;
+import com.isw.app.domain.enums.Gender;
+import com.isw.app.domain.enums.TLQPath;
+import com.isw.app.domain.models.Customer;
+import com.isw.app.application.helpers.BufferedHelper;
+import com.isw.app.infrastructure.repositories.BaseTLQRepository;
 
 public class CustomerTLQRepository extends BaseTLQRepository implements CustomerRepository {
-
   @Override
   public void save(Customer customer) {
-    try (BufferedWriter writer = BufferedHelper.getWriter(DataPath.CUSTOMERS)) {
+    try (BufferedWriter writer = BufferedHelper.getWriter(TLQPath.CUSTOMERS)) {
       writeDelimiter(writer);
       writeField(writer, "name", customer.getName());
       writeField(writer, "cedula", customer.getCedula());
@@ -42,7 +40,7 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
   }
 
   private Optional<Customer> findByField(String field, String value) {
-    try (BufferedReader reader = BufferedHelper.getReader(DataPath.CUSTOMERS)) {
+    try (BufferedReader reader = BufferedHelper.getReader(TLQPath.CUSTOMERS)) {
       for (var block : readBlocks(reader)) {
         Map<String, String> fields = parseFields(block);
 
