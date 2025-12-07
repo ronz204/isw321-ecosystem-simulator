@@ -5,9 +5,13 @@ import com.isw.app.application.contexts.SimulationContext;
 
 public class SimulateEcosystemHandler {
 
-  private final SimulationContext simulation = SimulationContext.getInstance();
+  private final SimulationContext context;
+
+  public SimulateEcosystemHandler() {
+    this.context = SimulationContext.getInstance();
+  }
 
   public void handle(SimulateEcosystemSchema schema) {
-    simulation.setSuccess(true, "Simulación completada exitosamente.");
+    context.setSuccess(true, "Simulación completada exitosamente.");
   }
 }
