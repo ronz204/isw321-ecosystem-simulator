@@ -9,24 +9,20 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.PasswordField;
 import com.isw.app.application.helpers.ValidatorHelper;
-import com.isw.app.presentation.properties.RegisterProperties;
+import com.isw.app.application.contexts.RegisterContext;
 import com.isw.app.application.handlers.register.RegisterCustomerSchema;
 import com.isw.app.application.handlers.register.RegisterCustomerHandler;
 import com.isw.app.infrastructure.repositories.customer.CustomerRepository;
 import com.isw.app.infrastructure.repositories.customer.CustomerTLQRepository;
 
-/* import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.repositories.customer.CustomerRepository;
-import com.isw.app.handlers.register.RegisterCustomerSchema;
-import com.isw.app.handlers.register.RegisterCustomerHandler;
-import com.isw.app.presentation.properties.RegisterProperties;
-import com.isw.app.repositories.customer.CustomerTLQRepository; */
-
 public class RegisterController {
 
-  private final RegisterProperties properties = new RegisterProperties();
+  private static final String ERROR_STYLE = "register-form__message--error";
+  private static final String SUCCESS_STYLE = "register-form__message--success";
+
+  private final RegisterContext context = RegisterContext.getInstance();
   private final CustomerRepository repository = new CustomerTLQRepository();
-  private final RegisterCustomerHandler handler = new RegisterCustomerHandler(repository, properties);
+  private final RegisterCustomerHandler handler = new RegisterCustomerHandler(repository);
 
   private ToggleGroup grpGender;
 
@@ -53,32 +49,83 @@ public class RegisterController {
     rdoFemale.setToggleGroup(grpGender);
     rdoFemale.setUserData(Gender.FEMALE);
 
-    properties.bindFldName(fldName);
-    properties.bindFldEmail(fldEmail);
-    properties.bindFldCedula(fldCedula);
-    properties.bindRdoGender(grpGender);
-    properties.bindIsSuccess(lblMessage);
-    properties.bindFldPassword(fldPassword);
-    properties.bindFldBirthday(fldBirthday);
+    bindFldName(fldName);
+    bindFldEmail(fldEmail);
+    bindFldCedula(fldCedula);
+    bindRdoGender(grpGender);
+    bindLblMessage(lblMessage);
+    bindFldPassword(fldPassword);
+    bindFldBirthday(fldBirthday);
   }
 
   @FXML
   public void onRegisterClick() {
     RegisterCustomerSchema schema = new RegisterCustomerSchema(
-        properties.getCedula(),
-        properties.getName(),
-        properties.getEmail(),
-        properties.getGender(),
-        properties.getPassword(),
-        properties.getBirthday());
+        context.getCedula(),
+        context.getName(),
+        context.getEmail(),
+        context.getGender(),
+        context.getPassword(),
+        context.getBirthday());
     
     var violations = ValidatorHelper.validate(schema);
     if (!violations.isEmpty()) {
       String message = violations.iterator().next().getMessage();
-      properties.setSuccess(false, message);
+      context.setSuccess(false, message);
       return;
     }
     
     handler.handle(schema);
+  }
+
+  private void bindFldName(TextField name) {
+    name.textProperty().bindBidirectional(context.nameProperty());
+  }
+
+  private void bindFldCedula(TextField cedula) {
+    cedula.textProperty().bindBidirectional(context.cedulaProperty());
+  }
+
+  private void bindFldEmail(TextField email) {
+    email.textProperty().bindBidirectional(context.emailProperty());
+  }
+
+  private void bindFldPassword(PasswordField password) {
+    password.textProperty().bindBidirectional(context.passwordProperty());
+  }
+
+  private void bindFldBirthday(DatePicker birthday) {
+    birthday.valueProperty().bindBidirectional(context.birthdayProperty());
+  }
+
+  private void bindLblMessage(Label label) {
+    context.successProperty().addListener((obs, prev, next) -> {
+      label.getStyleClass().removeAll(ERROR_STYLE, SUCCESS_STYLE);
+
+      if (next) {
+        label.setText(context.getMessage());
+        label.getStyleClass().add(SUCCESS_STYLE);
+      } else {
+        label.setText(context.getMessage());
+        label.getStyleClass().add(ERROR_STYLE);
+      }
+    });
+  }
+
+  private void bindRdoGender(ToggleGroup grpGender) {
+    grpGender.selectedToggleProperty().addListener((obs, prev, next) -> {
+      if (next != null && next.getUserData() instanceof Gender) {
+        context.setGender((Gender) next.getUserData());
+      }
+    });
+
+    context.genderProperty().addListener((obs, prev, next) -> {
+      if (next != null) {
+        grpGender.getToggles().stream()
+            .filter(toggle -> toggle.getUserData() != null && next.equals(toggle.getUserData()))
+            .findFirst()
+            .ifPresent(toggle -> grpGender.selectToggle(toggle));
+      }
+    });
   }
 }
