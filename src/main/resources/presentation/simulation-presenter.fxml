@@ -16,7 +16,7 @@
 <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="simulation"
   stylesheets="@simulation-presenter.css"
   xmlns:fx="http://javafx.com/fxml"
-  fx:controller="com.isw.app.presentation.SimulationPresenter">
+  fx:controller="com.isw.app.presentation.controllers.SimulationController">
 
   <HBox alignment="CENTER" spacing="20" styleClass="simulation-container">
     <padding>
@@ -53,13 +53,13 @@
 
       <Line endX="320" styleClass="simulation-form__divider" />
 
-      <!-- Extensiones -->
-      <Label text="Extensiones (Opcional)" styleClass="simulation-form__subtitle" />
+      <!-- Expansiones -->
+      <Label text="Expansiones (Opcional)" styleClass="simulation-form__subtitle" />
       
       <VBox spacing="6">
-        <CheckBox fx:id="chkThirdSpecies" text="Introducir tercera especie" 
+        <CheckBox fx:id="chkOmnivoreExpansion" text="Introducir omnivoros" 
           styleClass="simulation-form__checkbox" />
-        <CheckBox fx:id="chkGeneticMutation" text="Mutaciones genéticas" 
+        <CheckBox fx:id="chkZombieMutation" text="Habilitar zombificación" 
           styleClass="simulation-form__checkbox" />
       </VBox>
 
