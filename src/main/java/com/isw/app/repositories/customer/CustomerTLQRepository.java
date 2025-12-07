@@ -6,6 +6,7 @@ import java.util.Map;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import com.isw.app.enums.Gender;
 import com.isw.app.enums.DataPath;
 import com.isw.app.models.Customer;
 import com.isw.app.helpers.BufferedHelper;
@@ -21,7 +22,7 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
       writeField(writer, "cedula", customer.getCedula());
       writeField(writer, "email", customer.getEmail());
       writeField(writer, "password", customer.getPassword());
-      writeField(writer, "gender", customer.getGender());
+      writeField(writer, "gender", customer.getGender().getDisplay());
       writeField(writer, "birthday", customer.getBirthday().toString());
       writeDelimiter(writer);
       writer.flush();
@@ -34,7 +35,7 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
     Customer customer = new Customer(fields.get("cedula"));
     customer.setName(fields.get("name"));
     customer.setEmail(fields.get("email"));
-    customer.setGender(fields.get("gender"));
+    customer.setGender(Gender.fromDisplay(fields.get("gender")));
     customer.setPassword(fields.get("password"));
     customer.setBirthday(java.time.LocalDate.parse(fields.get("birthday")));
     return customer;
@@ -44,7 +45,7 @@ public class CustomerTLQRepository extends BaseTLQRepository implements Customer
     try (BufferedReader reader = BufferedHelper.getReader(DataPath.CUSTOMERS)) {
       for (var block : readBlocks(reader)) {
         Map<String, String> fields = parseFields(block);
-        
+
         if (value.equals(fields.get(field))) {
           return Optional.of(buildCustomer(fields));
         }

@@ -1,6 +1,7 @@
 package com.isw.app.models;
 
 import java.time.LocalDate;
+import com.isw.app.enums.Gender;
 
 public class Customer {
 
@@ -8,7 +9,7 @@ public class Customer {
   private String cedula;
   private String email;
   private String password;
-  private String gender;
+  private Gender gender;
   private LocalDate birthday;
 
   public Customer(String cedula) {
@@ -27,7 +28,7 @@ public class Customer {
     return email;
   }
 
-  public String getGender() {
+  public Gender getGender() {
     return gender;
   }
 
@@ -47,7 +48,7 @@ public class Customer {
     this.email = email;
   }
 
-  public void setGender(String gender) {
+  public void setGender(Gender gender) {
     this.gender = gender;
   }
 
