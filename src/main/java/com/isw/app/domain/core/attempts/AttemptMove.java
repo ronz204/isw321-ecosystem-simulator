@@ -15,7 +15,7 @@ public class AttemptMove extends Attempt {
     List<Coord> adjacent = matrix.getAdjacentEmptySectors(animal.getCoord());
 
     if (adjacent.isEmpty()) {
-      return Result.idle();
+      return Result.idle(animal);
     }
 
     Sector prev = matrix.getSectorAt(animal.getCoord());
