@@ -1,19 +1,26 @@
 package com.isw.app.presentation.controllers;
 
 import javafx.fxml.FXML;
-import com.isw.app.enums.Gender;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import com.isw.app.domain.enums.Gender;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.PasswordField;
-import com.isw.app.helpers.ValidatorHelper;
+import com.isw.app.application.helpers.ValidatorHelper;
+import com.isw.app.presentation.properties.RegisterProperties;
+import com.isw.app.application.handlers.register.RegisterCustomerSchema;
+import com.isw.app.application.handlers.register.RegisterCustomerHandler;
+import com.isw.app.infrastructure.repositories.customer.CustomerRepository;
+import com.isw.app.infrastructure.repositories.customer.CustomerTLQRepository;
+
+/* import com.isw.app.helpers.ValidatorHelper;
 import com.isw.app.repositories.customer.CustomerRepository;
 import com.isw.app.handlers.register.RegisterCustomerSchema;
 import com.isw.app.handlers.register.RegisterCustomerHandler;
 import com.isw.app.presentation.properties.RegisterProperties;
-import com.isw.app.repositories.customer.CustomerTLQRepository;
+import com.isw.app.repositories.customer.CustomerTLQRepository; */
 
 public class RegisterController {
 

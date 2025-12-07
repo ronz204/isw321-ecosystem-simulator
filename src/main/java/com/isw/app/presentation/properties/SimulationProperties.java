@@ -1,9 +1,9 @@
 package com.isw.app.presentation.properties;
 
-import com.isw.app.enums.Balance;
 import javafx.scene.control.Label;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import com.isw.app.domain.enums.Balance;
 import javafx.scene.control.ToggleGroup;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.ObjectProperty;

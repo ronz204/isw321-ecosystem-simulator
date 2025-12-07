@@ -4,12 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import com.isw.app.helpers.ValidatorHelper;
-import com.isw.app.handlers.login.LoginCustomerSchema;
-import com.isw.app.handlers.login.LoginCustomerHandler;
+import com.isw.app.application.helpers.ValidatorHelper;
 import com.isw.app.presentation.properties.LoginProperties;
-import com.isw.app.repositories.customer.CustomerRepository;
-import com.isw.app.repositories.customer.CustomerTLQRepository;
+import com.isw.app.application.handlers.login.LoginCustomerSchema;
+import com.isw.app.application.handlers.login.LoginCustomerHandler;
+import com.isw.app.infrastructure.repositories.customer.CustomerRepository;
+import com.isw.app.infrastructure.repositories.customer.CustomerTLQRepository;
 
 public class LoginController {
 

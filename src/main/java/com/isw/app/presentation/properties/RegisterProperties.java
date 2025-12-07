@@ -1,11 +1,11 @@
 package com.isw.app.presentation.properties;
 
 import java.time.LocalDate;
-import com.isw.app.enums.Gender;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import com.isw.app.domain.enums.Gender;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.PasswordField;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;

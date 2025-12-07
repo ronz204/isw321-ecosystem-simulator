@@ -1,21 +1,23 @@
 package com.isw.app.presentation.controllers;
 
 import javafx.fxml.FXML;
-import com.isw.app.enums.Balance;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import com.isw.app.domain.enums.Balance;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
-import com.isw.app.handlers.simulate.SimulateEcosystemSchema;
-import com.isw.app.handlers.simulate.SimulateEcosystemHandler;
+import com.isw.app.domain.core.setup.SimulatorInitializer;
 import com.isw.app.presentation.properties.SimulationProperties;
+import com.isw.app.application.handlers.simulate.SimulateEcosystemSchema;
+import com.isw.app.application.handlers.simulate.SimulateEcosystemHandler;
 
 public class SimulationController {
 
   private final SimulationProperties properties = new SimulationProperties();
+  private final SimulatorInitializer initializer = SimulatorInitializer.getInstance();
   private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler(properties);
 
   private ToggleGroup grpScenario;
@@ -55,6 +57,10 @@ public class SimulationController {
     properties.bindLblTurnInfo(lblTurnInfo);
     properties.bindChkZombieMutation(chkZombieMutation);
     properties.bindChkOmnivoreExpansion(chkOmnivoreExpansion);
+
+    initializer.setProperties(properties);
+    initializer.setMatrixPane(gridMatrix);
+    initializer.render(); 
   }
 
   @FXML
@@ -62,7 +68,7 @@ public class SimulationController {
     SimulateEcosystemSchema schema = new SimulateEcosystemSchema(
         properties.getMaxTurns(),
         properties.getBalance());
-    
+
     schema.setFlagZombieMutation(properties.getFlagZombieMutation());
     schema.setFlagOmnivoreExpansion(properties.getFlagOmnivoreExpansion());
 
