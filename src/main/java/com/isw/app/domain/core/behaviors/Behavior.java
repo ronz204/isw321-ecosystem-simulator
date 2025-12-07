@@ -2,8 +2,12 @@ package com.isw.app.domain.core.behaviors;
 
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Matrix;
+import com.isw.app.domain.core.objects.Result;
 import com.isw.app.domain.core.attempts.Attempt;
+import com.isw.app.domain.core.attempts.AttemptSex;
 import com.isw.app.domain.core.attempts.AttemptMove;
+import com.isw.app.domain.core.attempts.AttemptHunt;
+import com.isw.app.domain.core.attempts.AttemptDeath;
 
 public abstract class Behavior {
   protected int turnsAlive = 0;
@@ -11,11 +15,49 @@ public abstract class Behavior {
   protected int turnsSinceLastMeal = 0;
   protected int consecutiveSurvivalTurns = 0;
 
+  protected Attempt attemptSex = new AttemptSex();
   protected Attempt attemptMove = new AttemptMove();
+  protected Attempt attemptHunt = new AttemptHunt();
+  protected Attempt attemptDeath = new AttemptDeath();
 
   public abstract boolean canEat();
   public abstract boolean canDie();
   public abstract boolean canSex();
-  
-  public abstract void act(Animal animal, Matrix matrix);
+
+  public Result act(Animal animal, Matrix matrix) {
+    if (animal.isDead())
+      return Result.idle(animal);
+    incrementTurns();
+
+    if (canDie())
+      return attemptDeath.execute(animal, matrix);
+
+    if (canSex()) {
+      Result result = attemptSex.execute(animal, matrix);
+      if (result.isSuccess())
+        return result;
+    }
+
+    if (canEat()) {
+      Result result = attemptHunt.execute(animal, matrix);
+      if (result.isSuccess())
+        return result;
+    }
+
+    return attemptMove.execute(animal, matrix);
+  };
+
+  protected void incrementTurns() {
+    turnsAlive++;
+    turnsSinceLastSex++;
+    turnsSinceLastMeal++;
+  }
+
+  public void resetMealTurns() {
+    turnsSinceLastMeal = 0;
+  }
+
+  public void resetSexTurns() {
+    turnsSinceLastSex = 0;
+  }
 }
