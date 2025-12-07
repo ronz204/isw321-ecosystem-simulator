@@ -66,7 +66,7 @@
       <Line endX="320" styleClass="simulation-form__divider" />
 
       <!-- Botón -->
-      <Button fx:id="btnStart" text="▶ Iniciar" onAction="#onStartClick" maxWidth="Infinity"
+      <Button fx:id="btnStart" text="Iniciar" onAction="#onStartClick" maxWidth="Infinity"
         styleClass="simulation-form__button" />
 
       <Label fx:id="lblMessage" wrapText="true" styleClass="simulation-form__message" />
@@ -78,9 +78,7 @@
       <GridPane fx:id="gridMatrix" styleClass="matrix-grid" />
       
       <HBox spacing="15" alignment="CENTER">
-        <Label fx:id="lblTurnInfo" text="Turno: 0 / 0" styleClass="simulation-form__label" />
-        <Label fx:id="lblPreyInfo" text="🐰 Presas: 0" styleClass="simulation-form__label" />
-        <Label fx:id="lblPredatorInfo" text="🦊 Depredadores: 0" styleClass="simulation-form__label" />
+        <Label fx:id="lblTurnInfo" text="Turno: 0" styleClass="matrix-container__turn-info" />
       </HBox>
     </VBox>
   </HBox>

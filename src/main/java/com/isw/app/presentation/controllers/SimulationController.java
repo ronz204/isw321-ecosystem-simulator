@@ -11,6 +11,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
 import javafx.util.converter.NumberStringConverter;
 import com.isw.app.application.contexts.SimulationContext;
+import com.isw.app.domain.core.setup.SimulatorInitializer;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemSchema;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemHandler;
 
@@ -37,28 +38,34 @@ public class SimulationController {
   private CheckBox chkOmnivoreExpansion, chkZombieMutation;
 
   @FXML
-  private Label lblMessage, lblTurnInfo, lblPreyInfo, lblPredatorInfo;
+  private Label lblMessage, lblTurnInfo;
 
   @FXML
   private RadioButton rdoBalanced, rdoPreyDominant, rdoPredatorDominant;
 
   @FXML
   public void initialize() {
+    simulation.setPane(gridMatrix);
+
     grpScenario = new ToggleGroup();
     rdoBalanced.setToggleGroup(grpScenario);
     rdoPreyDominant.setToggleGroup(grpScenario);
     rdoPredatorDominant.setToggleGroup(grpScenario);
 
+    rdoBalanced.setSelected(true);
     rdoBalanced.setUserData(Balance.BALANCED);
     rdoPreyDominant.setUserData(Balance.HERBIVORE_DOMINANT);
     rdoPredatorDominant.setUserData(Balance.CARNIVORE_DOMINANT);
 
+    bindBtnStart(btnStart);
     bindIsSuccess(lblMessage);
     bindFldMaxTurns(fldTurns);
     bindRdoBalance(grpScenario);
     bindLblTurnInfo(lblTurnInfo);
     bindChkZombieMutation(chkZombieMutation);
     bindChkOmnivoreExpansion(chkOmnivoreExpansion);
+
+    SimulatorInitializer.render();
   }
 
   @FXML
@@ -71,6 +78,10 @@ public class SimulationController {
     schema.setFlagOmnivoreExpansion(simulation.getFlagOmnivoreExpansion());
 
     handler.handle(schema);
+  }
+
+  private void bindBtnStart(Button button) {
+    button.disableProperty().bind(simulation.runningProperty());
   }
 
   private void bindLblTurnInfo(Label label) {
