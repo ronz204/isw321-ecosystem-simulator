@@ -4,6 +4,7 @@ import com.isw.app.domain.core.objects.Coord;
 import com.isw.app.domain.core.objects.Detail;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.behaviors.Behavior;
+import com.isw.app.domain.core.behaviors.ZombieBehavior;
 import com.isw.app.domain.core.behaviors.OmnivoreBehavior;
 import com.isw.app.domain.core.behaviors.HerbivoreBehavior;
 import com.isw.app.domain.core.behaviors.CarnivoreBehavior;
@@ -17,6 +18,8 @@ public class AnimalFactory {
 
   private static Behavior getBehavior(Detail detail) {
     switch (detail) {
+      case ZOMBIE:
+        return new ZombieBehavior();
       case OMNIVORE:
         return new OmnivoreBehavior();
       case CARNIVORE:

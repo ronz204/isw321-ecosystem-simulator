@@ -2,6 +2,7 @@ package com.isw.app.domain.core.objects;
 
 public enum Detail {
   CORPSE("Corpse", "💀", 0),
+  ZOMBIE("Zombie", "🎃", 4),
   OMNIVORE("Omnivoro", "🐻", 3),
   CARNIVORE("Carnivoro", "🦊", 3),
   HERBIVORE("Herbivoro", "🐰", 1);
