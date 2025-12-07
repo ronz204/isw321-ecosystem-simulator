@@ -1,8 +1,8 @@
 package com.isw.app.domain.core.setup;
 
 import java.util.Map.Entry;
-import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Coord;
+import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Detail;
 import com.isw.app.domain.core.objects.Matrix;
 import com.isw.app.domain.core.factories.AnimalFactory;

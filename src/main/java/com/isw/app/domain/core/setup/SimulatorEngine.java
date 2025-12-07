@@ -7,19 +7,23 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Detail;
-import com.isw.app.domain.core.objects.Matrix;
 import com.isw.app.application.helpers.RandomHelper;
 import com.isw.app.application.contexts.SimulationContext;
 
 public class SimulatorEngine {
   private Timeline timeline;
 
-  public SimulatorEngine() {}
+  private final SimulatorContext context;
+  private final SimulationContext simulation;
+
+  public SimulatorEngine() {
+    this.context = SimulatorContext.getInstance();
+    this.simulation = SimulationContext.getInstance();
+  }
 
   public void start() {
-    SimulationContext simulation = SimulationContext.getInstance();
-    
     int maxTurns = simulation.getTurns();
+
     simulation.setCurrent(0);
     simulation.setRunning(true);
 
@@ -47,17 +51,15 @@ public class SimulatorEngine {
   }
 
   private void execute() {
-    SimulatorContext context = SimulatorContext.getInstance();
     Map<Detail, List<Animal>> animals = context.getAnimals();
-    Matrix matrix = context.getMatrix();
 
-    for (Detail detail : Detail.values()) {
-      List<Animal> list = animals.get(detail);
-      
-      if (list != null && !list.isEmpty()) {
-        int index = RandomHelper.getChooseInt(list.size());
-        Animal selected = list.get(index);
-        selected.act(matrix);
+    for (Detail specie : Detail.values()) {
+      List<Animal> species = animals.get(specie);
+
+      if (species != null && !species.isEmpty()) {
+        int index = RandomHelper.getChooseInt(species.size());
+        Animal selected = species.get(index);
+        selected.act(context.getMatrix());
       }
     }
   }
