@@ -14,7 +14,7 @@
 <VBox alignment="CENTER" spacing="0" styleClass="register"
   stylesheets="@register-presenter.css"
   xmlns:fx="http://javafx.com/fxml"
-  fx:controller="com.isw.app.presentation.RegisterPresenter">
+  fx:controller="com.isw.app.presentation.controllers.RegisterController">
 
   <padding>
     <Insets bottom="0" left="0" right="0" top="0" />

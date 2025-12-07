@@ -3,8 +3,8 @@ package com.isw.app.handlers.register;
 import com.isw.app.models.Customer;
 import com.isw.app.helpers.HashingHelper;
 import com.isw.app.helpers.LocalDateHelper;
-import com.isw.app.properties.RegisterProperties;
 import com.isw.app.repositories.customer.CustomerRepository;
+import com.isw.app.presentation.properties.RegisterProperties;
 
 public class RegisterCustomerHandler {
   private final CustomerRepository repository;
@@ -17,17 +17,17 @@ public class RegisterCustomerHandler {
 
   public void handle(RegisterCustomerSchema schema) {
     if (repository.findByEmail(schema.getEmail()).isPresent()) {
-      properties.setMessage("Ya existe un cliente con ese email.");
+      properties.setSuccess(false, "Ya existe un cliente con ese email.");
       return;
     }
 
     if (repository.findByCedula(schema.getCedula()).isPresent()) {
-      properties.setMessage("Ya existe un cliente con esa cedula.");
+      properties.setSuccess(false, "Ya existe un cliente con esa cedula.");
       return;
     }
 
     if (!LocalDateHelper.hasRequiredAge(schema.getBirthday(), 18)) {
-      properties.setMessage("El cliente debe ser mayor de edad.");
+      properties.setSuccess(false, "El cliente debe ser mayor de edad.");
       return;
     }
 
@@ -39,11 +39,11 @@ public class RegisterCustomerHandler {
     customer.setBirthday(schema.getBirthday());
     repository.save(customer);
 
-    properties.setMessage("Cliente registrado exitosamente");
+    properties.setSuccess(true, "Cliente registrado exitosamente");
     properties.setCedula("");
     properties.setName("");
     properties.setEmail("");
-    properties.setGender("");
+    properties.setGender(null);
     properties.setPassword("");
     properties.setBirthday(null);
   }

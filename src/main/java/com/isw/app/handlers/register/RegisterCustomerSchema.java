@@ -1,6 +1,7 @@
 package com.isw.app.handlers.register;
 
 import java.time.LocalDate;
+import com.isw.app.enums.Gender;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -17,8 +18,8 @@ public class RegisterCustomerSchema {
   @Email(message = "El email no es válido.")
   private String email;
 
-  @NotBlank(message = "El género es obligatorio.")
-  private String gender;
+  @NotNull(message = "El género es obligatorio.")
+  private Gender gender;
 
   @NotBlank(message = "La contraseña es obligatoria.")
   @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres.")
@@ -27,7 +28,7 @@ public class RegisterCustomerSchema {
   @NotNull(message = "La fecha de nacimiento es obligatoria.")
   private LocalDate birthday;
 
-  public RegisterCustomerSchema(String cedula, String name, String email, String gender, String password, LocalDate birthday) {
+  public RegisterCustomerSchema(String cedula, String name, String email, Gender gender, String password, LocalDate birthday) {
     this.name = name;
     this.email = email;
     this.gender = gender;
@@ -48,7 +49,7 @@ public class RegisterCustomerSchema {
     return email;
   }
 
-  public String getGender() {
+  public Gender getGender() {
     return gender;
   }
 
