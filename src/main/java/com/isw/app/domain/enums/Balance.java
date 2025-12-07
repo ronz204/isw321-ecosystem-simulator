@@ -10,6 +10,7 @@ public enum Balance {
         case OMNIVORE: return 5;
         case HERBIVORE: return 5;
         case CARNIVORE: return 5;
+        case CORPSE: return 0;
         default: return 5;
       }
     }
@@ -21,6 +22,7 @@ public enum Balance {
         case HERBIVORE: return 10;
         case CARNIVORE: return 3;
         case OMNIVORE: return 3;
+        case CORPSE: return 0;
         default: return 5;
       }
     }
@@ -32,6 +34,7 @@ public enum Balance {
         case HERBIVORE: return 4;
         case CARNIVORE: return 10;
         case OMNIVORE: return 3;
+        case CORPSE: return 0;
         default: return 5;
       }
     }
