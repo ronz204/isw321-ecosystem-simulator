@@ -12,4 +12,8 @@ public class RandomHelper {
   public static int getChooseInt(int bound) {
     return random.nextInt(bound);
   }
+
+  public static boolean coinFlip() {
+    return random.nextBoolean();
+  }
 }
