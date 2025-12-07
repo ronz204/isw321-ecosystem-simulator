@@ -1,17 +1,30 @@
 package com.isw.app.application.handlers.simulate;
 
-
+import com.isw.app.domain.core.setup.SimulatorConfig;
+import com.isw.app.domain.core.setup.SimulatorContext;
 import com.isw.app.application.contexts.SimulationContext;
+import com.isw.app.domain.core.setup.SimulatorInitializer;
+import com.isw.app.domain.core.artifacts.expansions.OmnivoreExpansion;
+import com.isw.app.domain.core.artifacts.expansions.HerbivoreExpansion;
+import com.isw.app.domain.core.artifacts.expansions.CarnivoreExpansion;
 
 public class SimulateEcosystemHandler {
 
-  private final SimulationContext context;
-
-  public SimulateEcosystemHandler() {
-    this.context = SimulationContext.getInstance();
-  }
-
   public void handle(SimulateEcosystemSchema schema) {
-    context.setSuccess(true, "Simulación completada exitosamente.");
+    SimulatorConfig.reset();
+    SimulatorContext.reset();
+
+    SimulatorConfig config = SimulatorConfig.getInstance();
+    SimulationContext simulation = SimulationContext.getInstance();
+
+    config.addExpansion(new HerbivoreExpansion(schema.getBalance()));
+    config.addExpansion(new CarnivoreExpansion(schema.getBalance()));
+
+    if (schema.getFlagOmnivoreExpansion()) {
+      config.addExpansion(new OmnivoreExpansion(schema.getBalance()));
+    }
+
+    SimulatorInitializer.simulate();
+    simulation.setSuccess(true, "Simulación completada exitosamente.");
   }
 }

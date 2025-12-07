@@ -1,14 +1,15 @@
 package com.isw.app.application.contexts;
 
+import javafx.scene.layout.GridPane;
 import com.isw.app.domain.enums.Balance;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 
 public class SimulationContext {
   private static SimulationContext instance;
@@ -28,8 +29,10 @@ public class SimulationContext {
   private final BooleanProperty success = new SimpleBooleanProperty();
   private final IntegerProperty turns = new SimpleIntegerProperty(1);
   private final IntegerProperty current = new SimpleIntegerProperty(0);
+  private final BooleanProperty running = new SimpleBooleanProperty(false);
 
   // Propiedades de configuración
+  private final ObjectProperty<GridPane> pane = new SimpleObjectProperty<>();
   private final ObjectProperty<Balance> balance = new SimpleObjectProperty<>(Balance.BALANCED);
   private final BooleanProperty flagZombieMutation = new SimpleBooleanProperty(false);
   private final BooleanProperty flagOmnivoreExpansion = new SimpleBooleanProperty(false);
@@ -81,6 +84,32 @@ public class SimulationContext {
 
   public BooleanProperty successProperty() {
     return success;
+  }
+
+  // Getters y setters para el GridPane
+  public GridPane getPane() {
+    return pane.get();
+  }
+
+  public void setPane(GridPane value) {
+    pane.set(value);
+  }
+
+  public ObjectProperty<GridPane> paneProperty() {
+    return pane;
+  }
+
+  // Getters y setters para running
+  public boolean isRunning() {
+    return running.get();
+  }
+
+  public void setRunning(boolean value) {
+    running.set(value);
+  }
+
+  public BooleanProperty runningProperty() {
+    return running;
   }
 
   // Getters y setters para balance
