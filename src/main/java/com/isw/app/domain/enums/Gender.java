@@ -1,4 +1,4 @@
-package com.isw.app.enums;
+package com.isw.app.domain.enums;
 
 import java.util.Arrays;
 

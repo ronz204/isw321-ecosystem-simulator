@@ -1,7 +1,7 @@
-package com.isw.app.models;
+package com.isw.app.domain.models;
 
 import java.time.LocalDate;
-import com.isw.app.enums.Gender;
+import com.isw.app.domain.enums.Gender;
 
 public class Customer {
 

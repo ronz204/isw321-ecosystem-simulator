@@ -1,6 +1,6 @@
-package com.isw.app.enums;
+package com.isw.app.domain.enums;
 
-public enum Direction {
+public enum Lineal {
   UP(0, -1),
   DOWN(0, 1),
   LEFT(-1, 0),
@@ -9,7 +9,7 @@ public enum Direction {
   private final int dx;
   private final int dy;
 
-  Direction(int dx, int dy) {
+  Lineal(int dx, int dy) {
     this.dx = dx;
     this.dy = dy;
   }
