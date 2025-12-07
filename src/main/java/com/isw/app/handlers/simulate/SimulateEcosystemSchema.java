@@ -3,26 +3,44 @@ package com.isw.app.handlers.simulate;
 import com.isw.app.enums.Balance;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.NotBlank;
 
 public class SimulateEcosystemSchema {
   @NotNull(message = "El número de turnos es obligatorio.")
   @Min(value = 1, message = "El número de turnos debe ser al menos 1.")
-  private Integer maxTurns;
+  private Integer turns;
 
-  @NotBlank(message = "Debe seleccionar un escenario de balance.")
-  private String balance;
+  @NotNull(message = "Debe seleccionar un escenario de balance.")
+  private Balance balance;
 
-  public SimulateEcosystemSchema(Integer maxTurns, String balance) {
+  private Boolean flagZombieMutation;
+  private Boolean flagOmnivoreExpansion;
+
+  public SimulateEcosystemSchema(Integer turns, Balance balance) {
     this.balance = balance;
-    this.maxTurns = maxTurns;
+    this.turns = turns;
   }
 
   public Balance getBalance() {
-    return Balance.fromLabel(balance);
+    return balance;
   }
 
   public Integer getMaxTurns() {
-    return maxTurns;
+    return turns;
+  }
+
+  public Boolean getFlagZombieMutation() {
+    return flagZombieMutation;
+  }
+
+  public void setFlagZombieMutation(Boolean flag) {
+    this.flagZombieMutation = flag;
+  }
+
+  public Boolean getFlagOmnivoreExpansion() {
+    return flagOmnivoreExpansion;
+  }
+
+  public void setFlagOmnivoreExpansion(Boolean flag) {
+    this.flagOmnivoreExpansion = flag;
   }
 }

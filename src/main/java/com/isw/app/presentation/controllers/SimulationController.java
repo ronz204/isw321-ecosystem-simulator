@@ -9,11 +9,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
+import com.isw.app.handlers.simulate.SimulateEcosystemSchema;
+import com.isw.app.handlers.simulate.SimulateEcosystemHandler;
 import com.isw.app.presentation.properties.SimulationProperties;
 
 public class SimulationController {
 
   private final SimulationProperties properties = new SimulationProperties();
+  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler(properties);
 
   private ToggleGroup grpScenario;
 
@@ -56,6 +59,13 @@ public class SimulationController {
 
   @FXML
   private void onStartClick() {
-    System.out.println("Simulation started with settings:");
+    SimulateEcosystemSchema schema = new SimulateEcosystemSchema(
+        properties.getMaxTurns(),
+        properties.getBalance());
+    
+    schema.setFlagZombieMutation(properties.getFlagZombieMutation());
+    schema.setFlagOmnivoreExpansion(properties.getFlagOmnivoreExpansion());
+
+    handler.handle(schema);
   }
 }
