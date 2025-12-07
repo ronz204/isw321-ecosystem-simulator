@@ -17,7 +17,9 @@ public class AttemptHunt extends Attempt {
     List<Animal> adjacentAnimals = matrix.getAdjacentAnimals(animal.getCoord());
     
     List<Animal> huntablePreys = adjacentAnimals.stream()
-        .filter(prey -> !prey.isDead() && prey.getTier() <= animal.getTier())
+        .filter(prey -> !prey.isDead() 
+            && prey.getTier() <= animal.getTier()
+            && !prey.getDetail().equals(animal.getDetail()))
         .collect(Collectors.toList());
     
     if (huntablePreys.isEmpty()) {
