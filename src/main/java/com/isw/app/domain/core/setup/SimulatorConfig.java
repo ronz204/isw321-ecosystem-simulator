@@ -34,6 +34,10 @@ public class SimulatorConfig {
   private List<BaseExpansion> expansions;
   private Map<Detail, Integer> populations;
 
+  public List<BaseMutation> getMutations() {
+    return mutations;
+  }
+
   public void addMutation(BaseMutation mutation) {
     this.mutations.add(mutation);
   }
@@ -53,10 +57,6 @@ public class SimulatorConfig {
   public void apply() {
     for (BaseExpansion expansion : expansions) {
       expansion.apply(this);
-    }
-
-    for (BaseMutation mutation : mutations) {
-      mutation.apply(this);
     }
   }
 }

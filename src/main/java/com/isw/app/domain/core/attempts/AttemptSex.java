@@ -10,6 +10,7 @@ import com.isw.app.domain.core.objects.Sector;
 import com.isw.app.application.helpers.RandomHelper;
 import com.isw.app.domain.core.setup.SimulatorContext;
 import com.isw.app.domain.core.factories.AnimalFactory;
+import com.isw.app.application.services.MutationService;
 
 public class AttemptSex extends Attempt {
 
@@ -27,11 +28,13 @@ public class AttemptSex extends Attempt {
     Detail parentDetail = animal.getDetail();
     Animal child = AnimalFactory.build(parentDetail, childCoord);
     
+    child = MutationService.applyRandomMutation(child);
+    
     Sector childSector = matrix.getSectorAt(childCoord);
     childSector.setAnimal(child);
     
     SimulatorContext context = SimulatorContext.getInstance();
-    context.getAnimals().get(parentDetail).add(child);
+    context.getAnimals().get(child.getDetail()).add(child);
     
     animal.getBehavior().resetSexTurns();
     return Result.sex(animal, child);
