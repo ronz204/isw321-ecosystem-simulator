@@ -6,44 +6,57 @@ public class Result {
   private Animal actor;
   private Animal child;
   private Animal target;
+  private boolean success;
 
-  private Result(Action action) {
+  private Result(Action action, boolean success) {
     this.action = action;
+    this.success = success;
   }
 
   public static Result move(Animal actor) {
-    Result result = new Result(Action.MOVE);
+    Result result = new Result(Action.MOVE, true);
     result.actor = actor;
     return result;
   }
 
   public static Result eat(Animal actor, Animal target) {
-    Result result = new Result(Action.EAT);
+    Result result = new Result(Action.EAT, true);
     result.target = target;
     result.actor = actor;
     return result;
   }
 
-  public static Result sec(Animal actor, Animal child) {
-    Result result = new Result(Action.SEX);
+  public static Result sex(Animal actor, Animal child) {
+    Result result = new Result(Action.SEX, true);
     result.actor = actor;
     result.child = child;
     return result;
   }
 
   public static Result death(Animal actor) {
-    Result result = new Result(Action.DEATH);
+    Result result = new Result(Action.DEATH, true);
     result.actor = actor;
     return result;
   }
 
-  public static Result idle() {
-    Result result = new Result(Action.IDLE);
+  public static Result idle(Animal actor) {
+    Result result = new Result(Action.IDLE, true);
+    result.actor = actor;
+    return result;
+  }
+
+  public static Result failed(Animal actor) {
+    Result result = new Result(Action.IDLE, false);
+    result.actor = actor;
     return result;
   }
 
   public Action getAction() {
     return action;
+  }
+
+  public boolean isSuccess() {
+    return success;
   }
 
   public Animal getActor() {

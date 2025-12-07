@@ -7,6 +7,7 @@ public class Animal {
   private Coord coord;
   private Detail detail;
   private Behavior behavior;
+  private boolean isDead = false;
 
   public Animal(Detail detail, Coord coord, Behavior behavior) {
     this.behavior = behavior;
@@ -14,8 +15,17 @@ public class Animal {
     this.coord = coord;
   }
 
-  public void act(Matrix matrix) {
-    behavior.act(this, matrix);
+  public boolean isDead() {
+    return isDead;
+  }
+
+  public void markAsDead() {
+    this.detail = Detail.CORPSE;
+    isDead = true;
+  }
+
+  public Result act(Matrix matrix) {
+    return behavior.act(this, matrix);
   }
 
   public Coord getCoord() {
@@ -48,5 +58,13 @@ public class Animal {
 
   public String getLabel() {
     return detail.getLabel();
+  }
+
+  public Behavior getBehavior() {
+    return behavior;
+  }
+
+  public void setBehavior(Behavior behavior) {
+    this.behavior = behavior;
   }
 }
