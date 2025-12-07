@@ -12,7 +12,7 @@
 <VBox alignment="CENTER" spacing="0" styleClass="login"
   stylesheets="@login-presenter.css"
   xmlns:fx="http://javafx.com/fxml"
-  fx:controller="com.isw.app.presentation.LoginPresenter">
+  fx:controller="com.isw.app.presentation.controllers.LoginController">
 
   <padding>
     <Insets bottom="0" left="0" right="0" top="0" />
@@ -36,7 +36,7 @@
         styleClass="login-form__field" HBox.hgrow="ALWAYS" />
     </HBox>
 
-    <Button text="🌱 Ingresar" onAction="#onLoginClick" 
+    <Button text="🌱 Ingresar" onAction="#onLoginClick"
       styleClass="login-form__button" />
 
     <Label fx:id="lblMessage" wrapText="true" styleClass="login-form__message" />

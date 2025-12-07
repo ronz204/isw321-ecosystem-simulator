@@ -1,8 +1,7 @@
 package com.isw.app.handlers.login;
 
-import com.isw.app.models.Customer;
 import com.isw.app.helpers.HashingHelper;
-import com.isw.app.properties.LoginProperties;
+import com.isw.app.presentation.properties.LoginProperties;
 import com.isw.app.repositories.customer.CustomerRepository;
 
 public class LoginCustomerHandler {
@@ -16,21 +15,20 @@ public class LoginCustomerHandler {
   }
 
   public void handle(LoginCustomerSchema schema) {
-    var customerOpt = repository.findByCedula(schema.getCedula());
+    var customer = repository.findByCedula(schema.getCedula());
 
-    if (customerOpt.isEmpty()) {
-      properties.setMessage("Cédula o contraseña incorrecta.");
+    if (customer.isEmpty()) {
+      properties.setSuccess(false, "Cédula no registrada.");
       return;
     }
 
-    Customer customer = customerOpt.get();
-    if (!HashingHelper.verify(schema.getPassword(), customer.getPassword())) {
-      properties.setMessage("Cédula o contraseña incorrecta.");
+    if (!HashingHelper.verify(schema.getPassword(), customer.get().getPassword())) {
+      properties.setSuccess(false, "Contraseña incorrecta.");
       return;
     }
 
-    properties.setMessage("Inicio de sesion exitoso.");
     properties.setCedula("");
     properties.setPassword("");
+    properties.setSuccess(true, "Inicio de sesion exitoso.");
   }
 }
