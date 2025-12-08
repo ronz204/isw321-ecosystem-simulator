@@ -6,10 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import jakarta.mail.MessagingException;
 import com.isw.app.domain.enums.Balance;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
+import com.isw.app.application.mails.WelcomeMail;
 import javafx.util.converter.NumberStringConverter;
+import com.isw.app.application.services.MailingService;
+import com.isw.app.application.contexts.SessionContext;
 import com.isw.app.application.contexts.SimulationContext;
 import com.isw.app.domain.core.setup.SimulatorInitializer;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemSchema;
@@ -20,6 +24,8 @@ public class SimulationController {
   private static final String ERROR_STYLE = "simulation-form__message--error";
   private static final String SUCCESS_STYLE = "simulation-form__message--success";
 
+  private final SessionContext session = SessionContext.getInstance();
+  private final MailingService mailing = MailingService.getInstance();
   private final SimulationContext simulation = SimulationContext.getInstance();
   private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler();
 
@@ -66,6 +72,7 @@ public class SimulationController {
     bindChkOmnivoreExpansion(chkOmnivoreExpansion);
 
     SimulatorInitializer.render();
+    sendWelcomeEmail();
   }
 
   @FXML
@@ -78,6 +85,18 @@ public class SimulationController {
     schema.setFlagOmnivoreExpansion(simulation.getFlagOmnivoreExpansion());
 
     handler.handle(schema);
+  }
+
+  private void sendWelcomeEmail() {
+    new Thread(() -> {
+      try {
+        WelcomeMail mail = new WelcomeMail(session.getEmail());
+        mailing.send(mail);
+      } catch (MessagingException e) {
+        System.err.println("Error sending welcome email: " + e.getMessage());
+        e.printStackTrace();
+      }
+    }).start();
   }
 
   private void bindBtnStart(Button button) {

@@ -11,6 +11,6 @@ public class Entrypoint extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     SceneService.setStage(stage);
-    SceneService.switchTo(FXMLPath.SIMULATION.getPath());
+    SceneService.switchTo(FXMLPath.LOGIN.getPath());
   }
 }
