@@ -19,38 +19,6 @@ public class Result {
     return result;
   }
 
-  /*
-   * public static Result eat(Animal actor, String description) {
-   * Result result = new Result(Action.EAT, true);
-   * result.actor = actor;
-   * return result;
-   * }
-   * 
-   * public static Result sex(Animal actor) {
-   * Result result = new Result(Action.SEX, true);
-   * result.actor = actor;
-   * return result;
-   * }
-   * 
-   * public static Result death(Animal actor) {
-   * Result result = new Result(Action.DEATH, true);
-   * result.actor = actor;
-   * return result;
-   * }
-   * 
-   * public static Result idle(Animal actor) {
-   * Result result = new Result(Action.IDLE, true);
-   * result.actor = actor;
-   * return result;
-   * }
-   * 
-   * public static Result failed(Animal actor) {
-   * Result result = new Result(Action.IDLE, false);
-   * result.actor = actor;
-   * return result;
-   * }
-   */
-
   public Animal getActor() {
     return actor;
   }

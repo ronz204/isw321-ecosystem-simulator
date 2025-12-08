@@ -16,7 +16,8 @@ public class AttemptMove extends Attempt {
     List<Coord> adjacent = matrix.getAdjacentEmptySectors(animal.getCoord());
 
     if (adjacent.isEmpty()) {
-      String description = "";
+      String description = String.format("%s no pudo moverse, no hay sectores adyacentes vacíos", 
+          animal.getDetail().getLabel());
       return Result.build(animal, Action.IDLE, description);
     }
 
@@ -29,7 +30,8 @@ public class AttemptMove extends Attempt {
     Sector next = matrix.getSectorAt(animal.getCoord());
     next.setAnimal(animal);
 
-    String description = "";
+    String description = String.format("%s se movió de %s a %s", 
+        animal.getDetail().getLabel(), prev.getCoord(), animal.getCoord());
     return Result.build(animal, Action.MOVE, description);
   }
 }

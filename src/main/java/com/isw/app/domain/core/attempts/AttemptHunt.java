@@ -24,7 +24,8 @@ public class AttemptHunt extends Attempt {
         .collect(Collectors.toList());
     
     if (huntablePreys.isEmpty()) {
-      String description = "";
+      String description = String.format("%s buscó presas pero no encontró ninguna disponible", 
+          animal.getDetail().getLabel());
       return Result.build(animal, Action.IDLE, description);
     }
     
@@ -46,7 +47,8 @@ public class AttemptHunt extends Attempt {
     context.getAnimals().get(Detail.CORPSE).add(prey);
   
     animal.getBehavior().resetMealTurns();
-    String description = "";
+    String description = String.format("%s cazó y comió a %s", 
+        animal.getDetail().getLabel(), preyDetail.getLabel());
     return Result.build(animal, Action.EAT, description);
   }
 }

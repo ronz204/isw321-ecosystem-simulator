@@ -20,7 +20,8 @@ public class AttemptSex extends Attempt {
     List<Coord> adjacentEmpty = matrix.getAdjacentEmptySectors(animal.getCoord());
     
     if (adjacentEmpty.isEmpty()) {
-      String description = "";
+      String description = String.format("%s quiso reproducirse pero no hay espacio disponible", 
+          animal.getDetail().getLabel());
       return Result.build(animal, Action.IDLE, description);
     }
     
@@ -39,7 +40,8 @@ public class AttemptSex extends Attempt {
     context.getAnimals().get(child.getDetail()).add(child);
     
     animal.getBehavior().resetSexTurns();
-    String description = "";
+    String description = String.format("%s se reprodujo y nació un nuevo %s en %s", 
+        parentDetail.getLabel(), child.getDetail().getLabel(), childCoord);
     return Result.build(animal, Action.SEX, description);
   }
 }
