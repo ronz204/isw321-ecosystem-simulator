@@ -1,0 +1,11 @@
+Github: https://github.com/ronz204/isw321-cleaning-robots
+
+Para iniciar la simulacion siga los siguientes pasos:
+
+1. Iniciar sesion o registrarse
+2. Settear el escenario, el maximo de turnos y las extensiones
+3. Presionar el boton de iniciar
+
+De ser necesario que necesite acceso al repo, favor comuniquese conmigo.
+
+Nota: La documentacion la encontrara en el README.md
