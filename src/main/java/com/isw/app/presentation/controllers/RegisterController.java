@@ -7,8 +7,11 @@ import com.isw.app.domain.enums.Gender;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
+import com.isw.app.domain.enums.FXMLPath;
 import javafx.scene.control.PasswordField;
+import com.isw.app.application.services.SceneService;
 import com.isw.app.application.helpers.ValidatorHelper;
+import com.isw.app.application.contexts.SessionContext;
 import com.isw.app.application.contexts.RegisterContext;
 import com.isw.app.application.handlers.register.RegisterCustomerSchema;
 import com.isw.app.application.handlers.register.RegisterCustomerHandler;
@@ -20,6 +23,7 @@ public class RegisterController {
   private static final String ERROR_STYLE = "register-form__message--error";
   private static final String SUCCESS_STYLE = "register-form__message--success";
 
+  private final SessionContext session = SessionContext.getInstance();
   private final RegisterContext context = RegisterContext.getInstance();
   private final CustomerRepository repository = new CustomerTLQRepository();
   private final RegisterCustomerHandler handler = new RegisterCustomerHandler(repository);
@@ -105,6 +109,9 @@ public class RegisterController {
       if (next) {
         label.setText(context.getMessage());
         label.getStyleClass().add(SUCCESS_STYLE);
+        
+        session.setEmail(context.getEmail());
+        SceneService.switchTo(FXMLPath.SIMULATION.getPath());
       } else {
         label.setText(context.getMessage());
         label.getStyleClass().add(ERROR_STYLE);
