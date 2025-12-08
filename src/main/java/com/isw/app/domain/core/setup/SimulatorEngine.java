@@ -5,19 +5,24 @@ import java.util.List;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import com.isw.app.domain.core.objects.Result;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Detail;
 import com.isw.app.application.helpers.RandomHelper;
 import com.isw.app.application.contexts.SimulationContext;
+import com.isw.app.infrastructure.repositories.actions.ActionRepository;
+import com.isw.app.infrastructure.repositories.actions.ActionTLQRepository;
 
 public class SimulatorEngine {
   private Timeline timeline;
   private int currentSpeciesIndex = 0;
 
   private final SimulatorContext context;
+  private final ActionRepository repository;
   private final SimulationContext simulation;
 
   public SimulatorEngine() {
+    this.repository = new ActionTLQRepository();
     this.context = SimulatorContext.getInstance();
     this.simulation = SimulationContext.getInstance();
   }
@@ -77,7 +82,9 @@ public class SimulatorEngine {
 
     int animalIndex = RandomHelper.getChooseInt(speciesAnimals.size());
     Animal selected = speciesAnimals.get(animalIndex);
-    selected.act(context.getMatrix());
+    
+    Result resultt = selected.act(context.getMatrix());
+    repository.save(resultt);
 
     currentSpeciesIndex++;
     if (currentSpeciesIndex >= availableSpecies.size()) {
