@@ -18,6 +18,7 @@ import com.isw.app.application.contexts.SimulationContext;
 import com.isw.app.domain.core.setup.SimulatorInitializer;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemSchema;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemHandler;
+import com.isw.app.application.services.ReportService;
 
 public class SimulationController {
 
@@ -28,6 +29,7 @@ public class SimulationController {
   private final MailingService mailing = MailingService.getInstance();
   private final SimulationContext simulation = SimulationContext.getInstance();
   private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler();
+  private final ReportService reportService = new ReportService();
 
   private ToggleGroup grpScenario;
 
@@ -70,6 +72,7 @@ public class SimulationController {
     bindLblTurnInfo(lblTurnInfo);
     bindChkZombieMutation(chkZombieMutation);
     bindChkOmnivoreExpansion(chkOmnivoreExpansion);
+    bindSimulationComplete();
 
     SimulatorInitializer.render();
     sendWelcomeEmail();
@@ -97,6 +100,18 @@ public class SimulationController {
         e.printStackTrace();
       }
     }).start();
+  }
+
+  private void bindSimulationComplete() {
+    simulation.runningProperty().addListener((obs, wasRunning, isRunning) -> {
+      if (wasRunning && !isRunning) {
+        onSimulationComplete();
+      }
+    });
+  }
+
+  private void onSimulationComplete() {
+    reportService.generateAndSendAsync(session.getEmail());
   }
 
   private void bindBtnStart(Button button) {
