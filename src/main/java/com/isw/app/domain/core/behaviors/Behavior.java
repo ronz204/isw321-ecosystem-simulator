@@ -28,7 +28,7 @@ public abstract class Behavior {
   public Result act(Animal animal, Matrix matrix) {
     if (animal.isDead()) {
       String description = "";
-      return Result.build(animal, Action.IDLE, description);
+      return Result.build(animal, Action.IDLE, description, false);
     }
     incrementTurns();
 
@@ -43,7 +43,7 @@ public abstract class Behavior {
 
     if (canEat()) {
       Result result = attemptHunt.execute(animal, matrix);
-      if (result.isSuccess())
+      if (result != null && result.isSuccess())
         return result;
     }
 

@@ -12,8 +12,8 @@ public class Result {
     this.success = success;
   }
 
-  public static Result build(Animal actor, Action action, String description) {
-    Result result = new Result(action, true);
+  public static Result build(Animal actor, Action action, String description, boolean success) {
+    Result result = new Result(action, success);
     result.description = description;
     result.actor = actor;
     return result;

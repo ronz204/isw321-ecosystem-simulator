@@ -15,6 +15,7 @@ public class ActionTLQRepository extends BaseTLQRepository implements ActionRepo
       writeDelimiter(writer);
       writeField(writer, "actor", result.getActor().getLabel());
       writeField(writer, "action", result.getAction().getDisplay());
+      writeField(writer, "description", result.getDescription());
       writeDelimiter(writer);
       writer.flush();
     } catch (IOException e) {

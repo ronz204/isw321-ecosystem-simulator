@@ -22,7 +22,7 @@ public class AttemptSex extends Attempt {
     if (adjacentEmpty.isEmpty()) {
       String description = String.format("%s quiso reproducirse pero no hay espacio disponible", 
           animal.getDetail().getLabel());
-      return Result.build(animal, Action.IDLE, description);
+      return Result.build(animal, Action.IDLE, description, false);
     }
     
     int index = RandomHelper.getChooseInt(adjacentEmpty.size());
@@ -42,6 +42,6 @@ public class AttemptSex extends Attempt {
     animal.getBehavior().resetSexTurns();
     String description = String.format("%s se reprodujo y nació un nuevo %s en %s", 
         parentDetail.getLabel(), child.getDetail().getLabel(), childCoord);
-    return Result.build(animal, Action.SEX, description);
+    return Result.build(animal, Action.SEX, description, true);
   }
 }

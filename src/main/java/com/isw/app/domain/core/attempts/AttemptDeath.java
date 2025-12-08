@@ -28,6 +28,6 @@ public class AttemptDeath extends Attempt {
     
     String description = String.format("%s murió por inanición en el turno %d", 
         original.getLabel(), simulation.getCurrent());
-    return Result.build(animal, Action.DEATH, description);
+    return Result.build(animal, Action.DEATH, description, true);
   }
 }

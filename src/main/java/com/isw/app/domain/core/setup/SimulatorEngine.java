@@ -80,6 +80,14 @@ public class SimulatorEngine {
     Detail currentSpecie = availableSpecies.get(currentSpeciesIndex);
     List<Animal> speciesAnimals = animals.get(currentSpecie);
 
+    if (currentSpecie == Detail.CORPSE) {
+      currentSpeciesIndex++;
+      if (currentSpeciesIndex >= availableSpecies.size()) {
+        currentSpeciesIndex = 0;
+      }
+      return;
+    }
+
     int animalIndex = RandomHelper.getChooseInt(speciesAnimals.size());
     Animal selected = speciesAnimals.get(animalIndex);
     
