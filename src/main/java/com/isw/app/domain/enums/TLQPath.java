@@ -4,7 +4,8 @@ import java.nio.file.Paths;
 
 public enum TLQPath {
   ACTIONS("actions.txt"),
-  CUSTOMERS("customers.txt");
+  CUSTOMERS("customers.txt"),
+  ECOSYSTEM("ecosystems.txt"),;
 
   private final String filename;
 
