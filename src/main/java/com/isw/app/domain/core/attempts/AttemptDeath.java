@@ -1,5 +1,6 @@
 package com.isw.app.domain.core.attempts;
 
+import com.isw.app.domain.core.objects.Action;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Detail;
 import com.isw.app.domain.core.objects.Matrix;
@@ -25,6 +26,7 @@ public class AttemptDeath extends Attempt {
     animal.markAsDead();
     context.getAnimals().get(Detail.CORPSE).add(animal);
     
-    return Result.death(animal);
+    String description = "";
+    return Result.build(animal, Action.DEATH, description);
   }
 }

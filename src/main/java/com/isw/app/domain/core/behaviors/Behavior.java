@@ -1,5 +1,6 @@
 package com.isw.app.domain.core.behaviors;
 
+import com.isw.app.domain.core.objects.Action;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Matrix;
 import com.isw.app.domain.core.objects.Result;
@@ -25,8 +26,10 @@ public abstract class Behavior {
   public abstract boolean canSex();
 
   public Result act(Animal animal, Matrix matrix) {
-    if (animal.isDead())
-      return Result.idle(animal);
+    if (animal.isDead()) {
+      String description = "";
+      return Result.build(animal, Action.IDLE, description);
+    }
     incrementTurns();
 
     if (canDie())

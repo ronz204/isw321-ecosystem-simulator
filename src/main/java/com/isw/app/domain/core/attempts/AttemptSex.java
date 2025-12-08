@@ -2,6 +2,7 @@ package com.isw.app.domain.core.attempts;
 
 import java.util.List;
 import com.isw.app.domain.core.objects.Coord;
+import com.isw.app.domain.core.objects.Action;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Detail;
 import com.isw.app.domain.core.objects.Matrix;
@@ -19,7 +20,8 @@ public class AttemptSex extends Attempt {
     List<Coord> adjacentEmpty = matrix.getAdjacentEmptySectors(animal.getCoord());
     
     if (adjacentEmpty.isEmpty()) {
-      return Result.failed(animal);
+      String description = "";
+      return Result.build(animal, Action.IDLE, description);
     }
     
     int index = RandomHelper.getChooseInt(adjacentEmpty.size());
@@ -37,6 +39,7 @@ public class AttemptSex extends Attempt {
     context.getAnimals().get(child.getDetail()).add(child);
     
     animal.getBehavior().resetSexTurns();
-    return Result.sex(animal, child);
+    String description = "";
+    return Result.build(animal, Action.SEX, description);
   }
 }

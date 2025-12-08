@@ -2,6 +2,7 @@ package com.isw.app.domain.core.attempts;
 
 import java.util.List;
 import com.isw.app.domain.core.objects.Coord;
+import com.isw.app.domain.core.objects.Action;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Matrix;
 import com.isw.app.domain.core.objects.Result;
@@ -15,7 +16,8 @@ public class AttemptMove extends Attempt {
     List<Coord> adjacent = matrix.getAdjacentEmptySectors(animal.getCoord());
 
     if (adjacent.isEmpty()) {
-      return Result.idle(animal);
+      String description = "";
+      return Result.build(animal, Action.IDLE, description);
     }
 
     Sector prev = matrix.getSectorAt(animal.getCoord());
@@ -27,6 +29,7 @@ public class AttemptMove extends Attempt {
     Sector next = matrix.getSectorAt(animal.getCoord());
     next.setAnimal(animal);
 
-    return Result.move(animal);
+    String description = "";
+    return Result.build(animal, Action.MOVE, description);
   }
 }

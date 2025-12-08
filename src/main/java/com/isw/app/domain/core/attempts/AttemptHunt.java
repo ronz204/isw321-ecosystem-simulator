@@ -2,6 +2,7 @@ package com.isw.app.domain.core.attempts;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import com.isw.app.domain.core.objects.Action;
 import com.isw.app.domain.core.objects.Animal;
 import com.isw.app.domain.core.objects.Detail;
 import com.isw.app.domain.core.objects.Matrix;
@@ -23,7 +24,8 @@ public class AttemptHunt extends Attempt {
         .collect(Collectors.toList());
     
     if (huntablePreys.isEmpty()) {
-      return Result.failed(animal);
+      String description = "";
+      return Result.build(animal, Action.IDLE, description);
     }
     
     int index = RandomHelper.getChooseInt(huntablePreys.size());
@@ -44,6 +46,7 @@ public class AttemptHunt extends Attempt {
     context.getAnimals().get(Detail.CORPSE).add(prey);
   
     animal.getBehavior().resetMealTurns();
-    return Result.eat(animal, prey);
+    String description = "";
+    return Result.build(animal, Action.EAT, description);
   }
 }
