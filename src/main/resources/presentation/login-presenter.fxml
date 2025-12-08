@@ -25,6 +25,12 @@
     <Line endX="320" styleClass="login-form__divider" />
 
     <HBox spacing="10" alignment="CENTER_LEFT">
+      <Label text="Email:" styleClass="login-form__label" />
+      <TextField fx:id="fldEmail" promptText="Ingrese su email"
+        styleClass="login-form__field" HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
       <Label text="Cédula:" styleClass="login-form__label" />
       <TextField fx:id="fldCedula" promptText="Ingrese su cédula"
         styleClass="login-form__field" HBox.hgrow="ALWAYS" />

@@ -27,8 +27,10 @@ public class LoginCustomerHandler {
       return;
     }
 
+    context.setEmail("");
     context.setCedula("");
     context.setPassword("");
+    context.setEmail(customer.get().getEmail());
     context.setSuccess(true, "Inicio de sesion exitoso.");
   }
 }

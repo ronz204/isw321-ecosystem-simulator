@@ -17,10 +17,23 @@ public class LoginContext {
     return instance;
   }
 
+  private final StringProperty email = new SimpleStringProperty();
   private final StringProperty cedula = new SimpleStringProperty();
   private final StringProperty message = new SimpleStringProperty();
   private final StringProperty password = new SimpleStringProperty();
   private final BooleanProperty success = new SimpleBooleanProperty();
+
+  public String getEmail() {
+    return email.get();
+  }
+
+  public void setEmail(String value) {
+    email.set(value);
+  }
+
+  public StringProperty emailProperty() {
+    return email;
+  }
 
   public String getCedula() {
     return cedula.get();
