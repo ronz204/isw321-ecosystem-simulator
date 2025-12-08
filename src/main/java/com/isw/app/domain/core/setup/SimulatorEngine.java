@@ -12,6 +12,7 @@ import com.isw.app.application.contexts.SimulationContext;
 
 public class SimulatorEngine {
   private Timeline timeline;
+  private int currentSpeciesIndex = 0;
 
   private final SimulatorContext context;
   private final SimulationContext simulation;
@@ -26,6 +27,7 @@ public class SimulatorEngine {
 
     simulation.setCurrent(0);
     simulation.setRunning(true);
+    currentSpeciesIndex = 0;
 
     timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
       execute();
@@ -52,15 +54,34 @@ public class SimulatorEngine {
 
   private void execute() {
     Map<Detail, List<Animal>> animals = context.getAnimals();
-
-    for (Detail specie : Detail.values()) {
-      List<Animal> species = animals.get(specie);
-
-      if (species != null && !species.isEmpty()) {
-        int index = RandomHelper.getChooseInt(species.size());
-        Animal selected = species.get(index);
-        selected.act(context.getMatrix());
+    Detail[] allSpecies = Detail.values();
+    
+    List<Detail> availableSpecies = new java.util.ArrayList<>();
+    for (Detail specie : allSpecies) {
+      List<Animal> speciesList = animals.get(specie);
+      if (speciesList != null && !speciesList.isEmpty()) {
+        availableSpecies.add(specie);
       }
+    }
+
+    if (availableSpecies.isEmpty()) {
+      return;
+    }
+
+    if (currentSpeciesIndex >= availableSpecies.size()) {
+      currentSpeciesIndex = 0;
+    }
+
+    Detail currentSpecie = availableSpecies.get(currentSpeciesIndex);
+    List<Animal> speciesAnimals = animals.get(currentSpecie);
+
+    int animalIndex = RandomHelper.getChooseInt(speciesAnimals.size());
+    Animal selected = speciesAnimals.get(animalIndex);
+    selected.act(context.getMatrix());
+
+    currentSpeciesIndex++;
+    if (currentSpeciesIndex >= availableSpecies.size()) {
+      currentSpeciesIndex = 0;
     }
   }
 }
