@@ -9,6 +9,10 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.layout.properties.HorizontalAlignment;
+import java.net.MalformedURLException;
 
 public class PdfBuilder {
   private PdfWriter writer;
@@ -51,6 +55,14 @@ public class PdfBuilder {
 
   public PdfBuilder addEmptyLine() {
     document.add(new Paragraph("\n"));
+    return this;
+  }
+
+  public PdfBuilder addImage(String imagePath) throws MalformedURLException {
+    Image image = new Image(ImageDataFactory.create(imagePath));
+    image.setHorizontalAlignment(HorizontalAlignment.CENTER);
+    image.setWidth(450);
+    document.add(image);
     return this;
   }
 

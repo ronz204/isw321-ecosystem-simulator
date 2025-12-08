@@ -3,11 +3,18 @@ package com.isw.app.application.reports;
 import com.isw.app.domain.core.objects.Detail;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class PdfGenerator {
+
+  private final ChartGenerator chartGenerator;
+
+  public PdfGenerator() {
+    this.chartGenerator = new ChartGenerator();
+  }
 
   public void generate(ReportData data, String outputPath) throws FileNotFoundException {
     PdfBuilder builder = new PdfBuilder(outputPath);
@@ -26,6 +33,29 @@ public class PdfGenerator {
       addExtinctionTable(builder, data.getExtinctionData());
     } else {
       builder.addParagraph("✓ No hubo especies extintas durante la simulación");
+    }
+
+    // Agregar gráficas
+    try {
+      builder.addEmptyLine();
+      builder.addSubtitle("Análisis de Población Final");
+      
+      String preyPredatorChart = chartGenerator.createPreyPredatorChart(
+          data.getPreyCount(), 
+          data.getPredatorCount());
+      builder.addImage(preyPredatorChart);
+      
+      builder.addEmptyLine();
+      builder.addSubtitle("Ocupación del Ecosistema");
+      
+      String occupancyChart = chartGenerator.createOccupancyChart(
+          data.getOccupiedCells(), 
+          data.getEmptyCells());
+      builder.addImage(occupancyChart);
+      
+    } catch (IOException e) {
+      System.err.println("Error generating charts: " + e.getMessage());
+      e.printStackTrace();
     }
 
     builder.close();
