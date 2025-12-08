@@ -12,24 +12,27 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
 import com.isw.app.application.mails.WelcomeMail;
 import javafx.util.converter.NumberStringConverter;
+import com.isw.app.application.services.ReportService;
 import com.isw.app.application.services.MailingService;
 import com.isw.app.application.contexts.SessionContext;
 import com.isw.app.application.contexts.SimulationContext;
 import com.isw.app.domain.core.setup.SimulatorInitializer;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemSchema;
 import com.isw.app.application.handlers.simulate.SimulateEcosystemHandler;
-import com.isw.app.application.services.ReportService;
+import com.isw.app.infrastructure.repositories.ecosystem.EcosystemRepository;
+import com.isw.app.infrastructure.repositories.ecosystem.EcosystemTLQRepository;
 
 public class SimulationController {
 
   private static final String ERROR_STYLE = "simulation-form__message--error";
   private static final String SUCCESS_STYLE = "simulation-form__message--success";
 
+  private final ReportService reportService = new ReportService();
   private final SessionContext session = SessionContext.getInstance();
   private final MailingService mailing = MailingService.getInstance();
+  private final EcosystemRepository repository = new EcosystemTLQRepository();
   private final SimulationContext simulation = SimulationContext.getInstance();
-  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler();
-  private final ReportService reportService = new ReportService();
+  private final SimulateEcosystemHandler handler = new SimulateEcosystemHandler(repository);
 
   private ToggleGroup grpScenario;
 
