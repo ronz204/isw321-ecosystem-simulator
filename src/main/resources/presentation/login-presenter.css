@@ -65,3 +65,18 @@
 .login-form__message--success {
   -fx-text-fill: #388e3c;
 }
+
+/* Block: login-form, Element: link-button */
+.login-form__link-button {
+  -fx-background-color: transparent;
+  -fx-text-fill: #2e7d32;
+  -fx-font-size: 13px;
+  -fx-underline: true;
+  -fx-border-width: 0;
+  -fx-padding: 0;
+}
+
+.login-form__link-button:hover {
+  -fx-text-fill: #1b5e20;
+  -fx-cursor: hand;
+}

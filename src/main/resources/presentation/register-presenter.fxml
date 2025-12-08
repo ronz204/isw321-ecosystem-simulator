@@ -66,5 +66,8 @@
       styleClass="register-form__button" />
 
     <Label fx:id="lblMessage" wrapText="true" styleClass="register-form__message" />
+
+    <Button text="¿Ya tienes cuenta? Inicia sesión" onAction="#onGoToLoginClick"
+      styleClass="register-form__link-button" />
   </VBox>
 </VBox>

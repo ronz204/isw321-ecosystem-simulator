@@ -61,6 +61,11 @@ public class LoginController {
     handler.handle(schema);
   }
 
+  @FXML
+  public void onGoToRegisterClick() {
+    SceneService.switchTo(FXMLPath.REGISTER.getPath());
+  }
+
   private void bindFldEmail(TextField email) {
     email.textProperty().bindBidirectional(context.emailProperty());
   }

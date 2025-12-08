@@ -82,6 +82,11 @@ public class RegisterController {
     handler.handle(schema);
   }
 
+  @FXML
+  public void onGoToLoginClick() {
+    SceneService.switchTo(FXMLPath.LOGIN.getPath());
+  }
+
   private void bindFldName(TextField name) {
     name.textProperty().bindBidirectional(context.nameProperty());
   }

@@ -70,3 +70,18 @@
 .register-form__message--success {
   -fx-text-fill: #388e3c;
 }
+
+/* Block: register-form, Element: link-button */
+.register-form__link-button {
+  -fx-background-color: transparent;
+  -fx-text-fill: #2e7d32;
+  -fx-font-size: 13px;
+  -fx-underline: true;
+  -fx-border-width: 0;
+  -fx-padding: 0;
+}
+
+.register-form__link-button:hover {
+  -fx-text-fill: #1b5e20;
+  -fx-cursor: hand;
+}
