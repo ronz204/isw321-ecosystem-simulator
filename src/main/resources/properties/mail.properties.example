@@ -1,0 +1,10 @@
+mail.smtp.host=sandbox.smtp.mailtrap.io
+mail.smtp.starttls.enable=true
+mail.smtp.port=2525
+mail.smtp.auth=true
+
+mail.username=<your username>
+mail.password=<your password>
+
+mail.from=noreply@ecosystem-simulator.com
+mail.from.name=Ecosystem Simulator
