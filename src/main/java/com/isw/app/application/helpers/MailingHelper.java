@@ -32,8 +32,4 @@ public class MailingHelper {
         </html>
         """.formatted(title, content);
   }
-
-  public static String buildPlainText(String... paragraphs) {
-    return String.join("\n\n", paragraphs);
-  }
 }

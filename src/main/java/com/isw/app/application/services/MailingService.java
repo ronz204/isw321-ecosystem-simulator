@@ -42,7 +42,10 @@ public class MailingService {
   }
 
   public void send(Mail mail) throws MessagingException {
-    if (mail.isHtml()) {
+    if (mail.hasAttachment()) {
+      sendEmailWithAttachment(mail.getTo(), mail.getSubject(), mail.getBody(), 
+                             mail.getAttachment(), mail.isHtml());
+    } else if (mail.isHtml()) {
       sendHtmlEmail(mail.getTo(), mail.getSubject(), mail.getBody());
     } else {
       sendEmail(mail.getTo(), mail.getSubject(), mail.getBody());
@@ -61,18 +64,27 @@ public class MailingService {
     Transport.send(message);
   }
 
-  public void sendEmailWithAttachment(String to, String subject, String body, String attachmentPath)
-      throws MessagingException {
+  public void sendEmailWithAttachment(String to, String subject, String body, 
+                                     String attachmentPath, boolean isHtml) throws MessagingException {
     Message message = createBaseMessage(to, subject);
 
     MimeBodyPart textPart = new MimeBodyPart();
-    textPart.setText(body);
+    if (isHtml) {
+      textPart.setContent(body, "text/html; charset=utf-8");
+    } else {
+      textPart.setText(body);
+    }
 
     MimeBodyPart attachmentPart = new MimeBodyPart();
     try {
-      attachmentPart.attachFile(attachmentPath);
+      java.io.File file = new java.io.File(attachmentPath);
+      if (!file.exists()) {
+        throw new MessagingException("Attachment file not found: " + attachmentPath);
+      }
+      attachmentPart.attachFile(file);
+      attachmentPart.setFileName(file.getName());
     } catch (Exception e) {
-      throw new MessagingException("Error attaching file", e);
+      throw new MessagingException("Error attaching file: " + attachmentPath, e);
     }
 
     MimeMultipart multipart = new MimeMultipart();
@@ -81,6 +93,11 @@ public class MailingService {
 
     message.setContent(multipart);
     Transport.send(message);
+  }
+
+  public void sendEmailWithAttachment(String to, String subject, String body, String attachmentPath)
+      throws MessagingException {
+    sendEmailWithAttachment(to, subject, body, attachmentPath, false);
   }
 
   private Message createBaseMessage(String to, String subject) throws MessagingException {
